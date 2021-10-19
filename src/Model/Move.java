@@ -10,7 +10,7 @@ public class Move implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        // invalid
     }
 
     /**
@@ -22,11 +22,22 @@ public class Move implements KeyListener {
         switch (keyCode){
             case KeyEvent.VK_UP:
 
+                break;
+
             case KeyEvent.VK_DOWN:
+
+                break;
 
             case KeyEvent.VK_RIGHT:
 
+                break;
+
             case KeyEvent.VK_LEFT:
+
+                break;
+
+            default:
+                break;
         }
 
     }
