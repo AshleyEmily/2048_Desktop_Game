@@ -20,7 +20,7 @@ public class controller {
 
     }
 
-    public void namageSocre(){
+    public void manageScore(){
 
     }
 
