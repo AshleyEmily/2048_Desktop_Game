@@ -13,14 +13,22 @@ public class Score {
         highScore = 0;
     }
 
+    public void addScore(int scoreValue)
+    {
+        score += scoreValue;
+    }
+
     public void updateScore(int scoreValue)
     {
         score = scoreValue;
     }
 
-    public void updateHighScore(int newScore)
+    public void updateHighScore()
     {
-        highScore = newScore;
+        if(score > highScore)
+        {
+            highScore = score;
+        }
     }
 
     public int getScore()
