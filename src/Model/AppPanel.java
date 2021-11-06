@@ -5,7 +5,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class AppPanel extends JPanel {
-    public GameView view;
+
     protected Board boardModel;
     protected JPanel controlPanel;
     protected JPanel gamePanel;
