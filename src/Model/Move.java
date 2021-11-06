@@ -22,19 +22,15 @@ public class Move extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode){
             case KeyEvent.VK_UP:
-               // System.out.println("up");
                 break;
 
             case KeyEvent.VK_DOWN:
-               // System.out.println("down");
                 break;
 
             case KeyEvent.VK_RIGHT:
-                //System.out.println("right");
                 break;
 
             case KeyEvent.VK_LEFT:
-                //System.out.println("left");
                 break;
 
             default:
