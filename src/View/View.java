@@ -1,16 +1,18 @@
-package Model;
+package View;
+
+import Model.Board;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
-public class AppPanel extends JPanel {
+public class View extends JPanel {
 
     protected Board boardModel;
     protected JPanel controlPanel;
     protected JPanel gamePanel;
     protected JFrame frame;
 
+    //grid specs
     private JLabel[][] grid;
     private static final int SIDES = 4;
     private static final int SIDE_LENGTH = 100;
@@ -21,13 +23,17 @@ public class AppPanel extends JPanel {
     public static int FRAME_WIDTH = 1000;
     public static int FRAME_HEIGHT = 500;
 
-    public AppPanel() {
+    public View() {
+        // Interface will consist of two panels: controlPanel for Score and Settings,
+        // and gamePanel for the game's grid
         controlPanel = new JPanel();
         gamePanel = new JPanel();
 
+        controlPanel.setBackground(Color.decode("#ddbea9"));
+        gamePanel.setBackground(Color.decode("#ddbea9"));
+
         JLabel scoreDisplay = new JLabel("SCORE: ", SwingConstants.CENTER);
         scoreDisplay.setPreferredSize(new Dimension(300, 100));
-
         scoreDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         controlPanel.add(scoreDisplay);
 
@@ -35,12 +41,7 @@ public class AppPanel extends JPanel {
         add(controlPanel);
         add(gamePanel);
 
-
-        controlPanel.setBackground(Color.decode("#ddbea9"));
-        gamePanel.setBackground(Color.decode("#ddbea9"));
-
-//        gamePanel.setBackground(Color.PINK);
-
+        // setup for JFrame where both JPanels will be
         frame = new JFrame();
         Container cp = frame.getContentPane();
         cp.add(this);
@@ -48,7 +49,7 @@ public class AppPanel extends JPanel {
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
 
 
-        //creating the grid
+        //creating the game grid
         grid = new JLabel[SIDES][SIDES];
         setBorder(BorderFactory.createLineBorder(Color.BLACK, GAP));
 //        setLayout(new GridLayout(SIDES, SIDES));
@@ -60,11 +61,9 @@ public class AppPanel extends JPanel {
                 grid[i][j].setBackground(CELL_COLOR);
                 grid[i][j].setOpaque(true);
                 grid[i][j].setPreferredSize(prefSize);
-                gamePanel.add(grid[i][j]);
+                gamePanel.add(grid[i][j]); // adds game grid to the right side of the View
             }
         }
-
-
     }
 
     public void display() {
@@ -72,7 +71,7 @@ public class AppPanel extends JPanel {
     }
 
     public static void main(String[] args) {
-        AppPanel panel = new AppPanel();
+        View panel = new View();
         panel.display();
 
     }
