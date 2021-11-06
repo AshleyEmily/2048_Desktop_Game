@@ -46,4 +46,7 @@ public class Move implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    public void setVisible(boolean b) {
+    }
 }
