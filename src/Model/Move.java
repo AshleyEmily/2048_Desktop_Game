@@ -4,9 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Move implements KeyListener {
-    public Move() {
-
-    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -19,9 +16,10 @@ public class Move implements KeyListener {
      * */
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+
         switch (keyCode){
             case KeyEvent.VK_UP:
-
+            	//call board move methods moveUp()
                 break;
 
             case KeyEvent.VK_DOWN:
@@ -46,4 +44,5 @@ public class Move implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
 }

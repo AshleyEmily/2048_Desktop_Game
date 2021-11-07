@@ -15,7 +15,8 @@ public class Score {
 
     public void updateScore(int scoreValue)
     {
-        score = scoreValue;
+        score += scoreValue;
+        if (score > highScore) highScore = score;
     }
 
     public void updateHighScore(int newScore)
