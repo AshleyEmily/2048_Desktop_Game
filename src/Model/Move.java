@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+
 public class Move extends JFrame implements KeyListener {
     public Move() {
         addKeyListener(this);
     }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -20,8 +22,12 @@ public class Move extends JFrame implements KeyListener {
      * */
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
+
         switch (keyCode){
             case KeyEvent.VK_UP:
+
+            	//call board move methods moveUp()
+
                 break;
 
             case KeyEvent.VK_DOWN:
@@ -45,4 +51,5 @@ public class Move extends JFrame implements KeyListener {
 
     public void setVisible(boolean b) {
     }
+
 }
