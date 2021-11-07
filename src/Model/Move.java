@@ -1,11 +1,12 @@
 package Model;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Move implements KeyListener {
+public class Move extends JFrame implements KeyListener {
     public Move() {
-
+        addKeyListener(this);
     }
 
     @Override
@@ -21,25 +22,20 @@ public class Move implements KeyListener {
         int keyCode = e.getKeyCode();
         switch (keyCode){
             case KeyEvent.VK_UP:
-
                 break;
 
             case KeyEvent.VK_DOWN:
-
                 break;
 
             case KeyEvent.VK_RIGHT:
-
                 break;
 
             case KeyEvent.VK_LEFT:
-
                 break;
 
             default:
                 break;
         }
-
     }
 
     @Override
