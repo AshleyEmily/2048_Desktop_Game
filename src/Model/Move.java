@@ -1,9 +1,15 @@
 package Model;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Move implements KeyListener {
+
+public class Move extends JFrame implements KeyListener {
+    public Move() {
+        addKeyListener(this);
+    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -19,30 +25,31 @@ public class Move implements KeyListener {
 
         switch (keyCode){
             case KeyEvent.VK_UP:
+
             	//call board move methods moveUp()
+
                 break;
 
             case KeyEvent.VK_DOWN:
-
                 break;
 
             case KeyEvent.VK_RIGHT:
-
                 break;
 
             case KeyEvent.VK_LEFT:
-
                 break;
 
             default:
                 break;
         }
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void setVisible(boolean b) {
     }
 
 }
