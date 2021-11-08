@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Board{
 
-    Number [][]boardData = new Number[4][4];
-    Settings theme;
-    Score gameScore;
+    private Number [][]boardData = new Number[4][4];
+    private Settings theme;
+    private Score gameScore;
 
     public Board() {
 		theme = new Settings();
@@ -24,6 +24,10 @@ public class Board{
     	y_rand = rand.nextInt(4);
     	}while (boardData[x_rand][y_rand] != null);
     	boardData[x_rand][y_rand] = new Number(x_rand, y_rand, theme.getTheme()[1]); 
+    }
+    
+    public Score getGameScore() {
+    	return gameScore;
     }
     
     public void combineMatch(Number tile) {
@@ -146,7 +150,9 @@ public class Board{
     	for (int i = 3; i >= 0; i--) {						//from bottom up
     		int next;
     		for (int j = 0; j < 4; j++) {					//left to right
+    			if (boardData[i][j] == null) continue;
     			next = context.executeMethod(i, j, boardData);
+    			
     			if (i == next) continue; 					//does not move tile
     			else if (boardData[next][j] == null) {		//moves to empty cell
     				boardData[i][j].moveToNewPlace(next, j);
@@ -166,7 +172,9 @@ public class Board{
     	for (int i = 0; i < 4; i++) {						//from up to down
     		int next;
     		for (int j = 0; j < 4; j++) {					//left to right
+    			if (boardData[i][j] == null) continue;
     			next = context.executeMethod(i, j, boardData);
+    			
     			if (i == next) continue; 					//does not move tile
     			else if (boardData[next][j] == null) {		//moves to empty cell
     				boardData[i][j].moveToNewPlace(next, j);
@@ -186,6 +194,7 @@ public class Board{
     	for (int j = 0; j < 4; j++) {						//from left to right
     		int next;
     		for (int i = 0; i < 4; i++) {					//top to bottom
+    			if (boardData[i][j] == null) continue;
     			next = context.executeMethod(i, j, boardData);
     			if (j == next) continue; 					//does not move tile
     			else if (boardData[i][next] == null) {		//moves to empty cell
@@ -206,6 +215,7 @@ public class Board{
     	for (int j = 3; j >= 0; j--) {						//from right to left
     		int next;
     		for (int i = 0; i < 4; i++) {					//top to bottom
+    			if (boardData[i][j] == null) continue;
     			next = context.executeMethod(i, j, boardData);;
     			if (j == next) continue; 					//does not move tile
     			else if (boardData[i][next] == null) {		//move to empty cell
