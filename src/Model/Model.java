@@ -1,8 +1,11 @@
 package Model;
 
 public class Model{
+	
+	Board game;
+	
 	Model(){
-		Board game = new Board();
+		game = new Board();
 	}
 	
 
