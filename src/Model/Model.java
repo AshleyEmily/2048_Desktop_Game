@@ -29,20 +29,22 @@ public class Model extends JFrame implements KeyListener {
 	        switch (keyCode){
 	            case KeyEvent.VK_UP:
 	            	game.moveUp();
-	            	//call board move methods moveUp()
-
+	            	game.populateTiles();
 	                break;
 
 	            case KeyEvent.VK_DOWN:
 	            	game.moveDown();
+	            	game.populateTiles();
 	                break;
 
 	            case KeyEvent.VK_RIGHT:
 	            	game.moveRight();
+	            	game.populateTiles();
 	                break;
 
 	            case KeyEvent.VK_LEFT:
 	            	game.moveLeft();
+	            	game.populateTiles();
 	                break;
 
 	            default:
@@ -57,7 +59,23 @@ public class Model extends JFrame implements KeyListener {
 
 	    public void setVisible(boolean b) {
 	    }
-
-	
+	    
+	    
+	    public void setTheme(int choice) {
+	    	game.changeTheme(choice);
+	    }
+	    public String[] getTheme() {
+	    	return game.getThemeSettings().getTheme();
+	    }
+	    
+	    
+	    public int getScore() {
+	    	return game.getGameScore().getScore();
+	    }
+	    
+	    public int getHighScore() {
+	    	return game.getGameScore().getHighScore();
+	    }
+	   
 
 }
