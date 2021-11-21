@@ -1,35 +1,21 @@
 package Controller;
 
-import Model.Move;
+
+import Model.Model;
+import View.View;
+
 
 public class controller {
+    private Model model;
+    private View view;
+
+    public static void main(String[] args) {
+        new controller();
+    }
+
     public controller(){
-
+        model = new Model();
+        view = new View();
+        view.display();
     }
-
-    public void Move(){
-        Move move = new Move();
-        move.setVisible(true);
-    }
-
-    public void startGame(){
-
-    }
-
-    public void changeSetting(){
-
-    }
-
-    public void manageScore(){
-
-    }
-
-    public void restartGame(){
-
-    }
-
-    public void displayBoard(){
-
-    }
-
 }
