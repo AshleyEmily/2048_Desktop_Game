@@ -5,16 +5,16 @@ import Model.Model;
 import View.View;
 
 
-public class controller {
+public class Controller {
     private Model model;
     private View view;
 
     public static void main(String[] args) {
-        new controller();
+        new Controller();
     }
 
-    public controller(){
-        model = new Model();
+    public Controller(){
+       // model = new Model();
         view = new View();
         view.display();
     }
