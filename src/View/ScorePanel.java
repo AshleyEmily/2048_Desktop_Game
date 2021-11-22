@@ -91,10 +91,10 @@ public class ScorePanel {
     }
 
     public void updatePartControl() {
-        highScoreField.setText(nf.format(model.getHighScore()));
-        highCellField.setText(nf.format(model.getHighCell()));
-        currentScoreField.setText(nf.format(model.getCurrentScore()));
-        currentCellField.setText(nf.format(model.getCurrentCell()));
+//         highScoreField.setText(nf.format(model.getHighScore()));
+//         highCellField.setText(nf.format(model.getHighCell()));
+//         currentScoreField.setText(nf.format(model.getCurrentScore()));
+//         currentCellField.setText(nf.format(model.getCurrentCell()));
     }
 
     public JPanel getPanel() {
