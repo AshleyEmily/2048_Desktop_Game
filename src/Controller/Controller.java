@@ -4,6 +4,7 @@ package Controller;
 import Model.Model;
 import View.View;
 
+import java.awt.event.ActionEvent;
 
 public class Controller {
     private Model model;
@@ -17,5 +18,11 @@ public class Controller {
         model = new Model();
         view = new View();
         view.display();
+    }
+
+    public actionPerformed(ActionEvent e){
+        model.getHighScore();
+        model.getTheme();
+
     }
 }
