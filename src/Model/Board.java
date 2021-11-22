@@ -178,7 +178,7 @@ public class Board{
  * @return nothing
  * @param nothing
  */
-    public void moveUp() {
+    public void moveDown() {
     	SeekCellsContext context = new SeekCellsContext(new seekCellsUpCol());
     	for (int i = 3; i >= 0; i--) {						//from bottom up
     		int next;
@@ -200,7 +200,7 @@ public class Board{
     		}
     	}
     }
-    public void moveDown() {
+    public void moveUp() {
     	SeekCellsContext context = new SeekCellsContext(new seekCellsDownCol());
     	for (int i = 0; i < 4; i++) {						//from up to down
     		int next;

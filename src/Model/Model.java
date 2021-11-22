@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 
 public class Model extends JFrame implements KeyListener {
 	
+	/**
+	 * 
+	 */
 	Board game;
 	
 	Model(){
@@ -77,5 +80,66 @@ public class Model extends JFrame implements KeyListener {
 	    	return game.getGameScore().getHighScore();
 	    }
 	   
+//	    public static void main(String [] args) {
+//	    	Model start = new Model();
+//	    	for (int x = 0; x < 4; x++)
+//	    	{
+//	    		for (int y = 0; y < 4; y++) {
+//	    			if (start.game.getTile(x, y) != null) {
+//		    	    	System.out.print(" " + start.game.getTile(x, y).getNumValue() + " ");
+//	    			}
+//	    			else System.out.print(" _ ");
+//
+//	    		}
+//	    		System.out.println("\n");
+//	    	}
+//	    	start.game.moveUp();
+//	    	start.game.populateTiles();
+//    		System.out.println("\n");
+//
+//	    	
+//	    	for (int x = 0; x < 4; x++)
+//	    	{
+//	    		for (int y = 0; y < 4; y++) {
+//	    			if (start.game.getTile(x, y) != null) {
+//		    	    	System.out.print(" " + start.game.getTile(x, y).getNumValue() + " ");
+//	    			}
+//	    			else System.out.print(" _ ");
+//
+//	    		}
+//	    		System.out.println("\n");
+//	    	}
+//	    	start.game.moveLeft();
+//	    	start.game.populateTiles();
+//	    	
+//    		System.out.println("\n");
+//
+//	    	for (int x = 0; x < 4; x++)
+//	    	{
+//	    		for (int y = 0; y < 4; y++) {
+//	    			if (start.game.getTile(x, y) != null) {
+//		    	    	System.out.print(" " + start.game.getTile(x, y).getNumValue() + " ");
+//	    			}
+//	    			else System.out.print(" _ ");
+//
+//	    		}
+//	    		System.out.println("\n");
+//	    	}
+//	    	
+//	    	start.game.moveRight();
+//	    	start.game.populateTiles();
+//	    	
+//	    	for (int x = 0; x < 4; x++)
+//	    	{
+//	    		for (int y = 0; y < 4; y++) {
+//	    			if (start.game.getTile(x, y) != null) {
+//		    	    	System.out.print(" " + start.game.getTile(x, y).getNumValue() + " ");
+//	    			}
+//	    			else System.out.print(" _ ");
+//
+//	    		}
+//	    		System.out.println("\n");
+//	    	}
+//	    }
 
 }
