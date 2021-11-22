@@ -12,7 +12,7 @@ public class Model extends JFrame implements KeyListener {
 	 */
 	Board game;
 	
-	Model(){
+	public Model(){
 		game = new Board();
         addKeyListener(this);
 	}
