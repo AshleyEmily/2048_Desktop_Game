@@ -7,33 +7,54 @@ public class Board{
     private Number [][]boardData = new Number[4][4];
     private Settings theme;
     private Score gameScore;
+    private boolean gameWon;
+    private boolean boardFull;
 
     public Board() {
 		theme = new Settings();
     	populateTiles();
 		populateTiles();
 		gameScore = new Score();
+		gameWon = false;
+		boardFull = false;
     }
     public void populateTiles() {
     	Random rand = new Random();
     	rand.setSeed(10);
     	int x_rand;
     	int y_rand;
+    	int counter = 0;
     	do {
     	x_rand = rand.nextInt(4);
     	y_rand = rand.nextInt(4);
-    	}while (boardData[x_rand][y_rand] != null);
+    	counter++;
+    	}while (boardData[x_rand][y_rand] != null && counter <= 16);
+    	if (counter == 16) boardFull = true;
     	boardData[x_rand][y_rand] = new Number(x_rand, y_rand, theme.getTheme()[1]); 
+    }
+    
+    public Number getTile(int x, int y) {
+    	return boardData[x][y];
     }
     
     public Score getGameScore() {
     	return gameScore;
     }
     
+    public boolean getGameStatus() {
+    	return gameWon;
+    }
+    
+    public boolean isBoardFull()
+    {
+    	return boardFull;
+    }
+    
     public void combineMatch(Number tile) {
     	tile.updateNumber();
 		tile.setColor(theme.getTheme()[(int)(Math.log(tile.getNumValue() / Math.log(2)))]);
 		gameScore.updateScore(tile.getNumValue());
+    	if (tile.getNumValue() == 2048) gameWon = true;
 		
     }
     
@@ -131,8 +152,20 @@ public class Board{
 //    	else if (boardData[x][y].equals(boardData[nextX-1][y])) return nextX-1; //if the cell after the furthest available is a match, take that as next cell
 //    	else return nextX; //return if not at the end or not a match
 //    }
-    public void changeTheme() {
-
+    
+    public void changeTheme(int choice) {
+    	theme.setTheme(choice);
+    	for (int x = 0; x < 4; x++) {
+    		for (int y = 0; y < 4; y++) {
+    			if (boardData[x][y] != null) {
+    				boardData[x][y].setColor(theme.getTheme()[(int)(Math.log(boardData[x][y].getNumValue() / Math.log(2)))]);
+    			}
+    		}
+    	}
+    }
+    
+    public Settings getThemeSettings() {
+    	return theme;
     }
 
 /*
@@ -145,7 +178,7 @@ public class Board{
  * @return nothing
  * @param nothing
  */
-    public void moveUp() {
+    public void moveDown() {
     	SeekCellsContext context = new SeekCellsContext(new seekCellsUpCol());
     	for (int i = 3; i >= 0; i--) {						//from bottom up
     		int next;
@@ -167,7 +200,7 @@ public class Board{
     		}
     	}
     }
-    public void moveDown() {
+    public void moveUp() {
     	SeekCellsContext context = new SeekCellsContext(new seekCellsDownCol());
     	for (int i = 0; i < 4; i++) {						//from up to down
     		int next;

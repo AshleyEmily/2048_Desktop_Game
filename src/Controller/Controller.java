@@ -14,7 +14,7 @@ public class Controller {
     }
 
     public Controller(){
-       // model = new Model();
+        model = new Model();
         view = new View();
         view.display();
     }
