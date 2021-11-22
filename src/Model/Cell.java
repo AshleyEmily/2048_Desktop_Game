@@ -4,7 +4,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Cell {
+public class Cell extends Settings {
     private static final int CELL_WIDTH = 120;
 
     private int value;
@@ -88,13 +88,13 @@ public class Cell {
         Color color = Color.WHITE;
 
         switch (value) {
-            case 2:     color = Color.WHITE;
+            case 2:     color = theme1[1];
                 break;
-            case 4:     color = Color.WHITE;
+            case 4:     color = theme1[1];
                 break;
-            case 8:     color = new Color(255, 255, 170);
+            case 8:     color = theme1[1];
                 break;
-            case 16:    color = new Color(255, 255, 128);
+            case 16:    color = new Color(111, 236, 91);
                 break;
             case 32:    color = new Color(255, 255, 85);
                 break;
