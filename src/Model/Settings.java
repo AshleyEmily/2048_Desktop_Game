@@ -17,8 +17,11 @@ public class Settings {
 		theme = 1;
 		// {name, color1, color2, color3, color4}??
 		theme1 = new Color[] {Color.BLUE, Color.CYAN};
-		theme2 = new String[] {"Wood Theme", "Blue", "Green", "Yellow", "Red"};
-		theme3 = new String[] {"Aqua Theme", "Blue", "Green", "Yellow", "Red"};
+// 		theme1 = new String[] {"#eee4da", "#ede0c8", "#f2b179", "#f59563", "#F67C5F", "#F65E3B", "#EDCF72", "#EDCC61", "#EDC850", "#EDC53F", "#EDC22E"};
+        
+		theme2 = new String[] {"#eee4da", "#ede0c8", "#99FEFF", "#94DAFF", "#94B3FD", "#B983FF","#DADDFC","#BEAEE2","#CAB8FF","#39A2DB","#5C7AEA"};
+        
+t		heme3 = new String[] {"#eee4da", "#ede0c8", "#9DD1AF", "#9BB494", "#68AB7A", "#628A6D", "#CCEFA5", "#ACCB8A", "#6BDB7D", "#ADF4B2", "#28D23F"};
 	}
 
 	/**
