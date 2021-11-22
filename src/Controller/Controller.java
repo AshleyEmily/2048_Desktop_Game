@@ -6,7 +6,6 @@ import View.View;
 
 import java.awt.event.ActionEvent;
 
-
 public class Controller {
     private Model model;
     private View view;

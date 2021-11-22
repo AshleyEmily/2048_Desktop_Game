@@ -1,9 +1,5 @@
 package Model;
-/*
- * 
- * 
- * 
- */
+
 public class Settings {
 	private int theme;
 	private String[] theme1;
@@ -12,10 +8,13 @@ public class Settings {
 
 	public Settings() {
 		theme = 1;
-		// {name, color1, color2, color3, color4}??
-		theme1 = new String[] {"Classic Theme", "Blue", "Green", "Yellow", "Red"};
-		theme2 = new String[] {"Wood Theme", "Blue", "Green", "Yellow", "Red"};
-		theme3 = new String[] {"Aqua Theme", "Blue", "Green", "Yellow", "Red"};
+		
+		//theme array format: {2,4,8,16,32,64,128,256,512,1024,2048}
+		theme1 = new String[] {"#eee4da", "#ede0c8", "#f2b179", "#f59563", "#F67C5F", "#F65E3B", "#EDCF72", "#EDCC61", "#EDC850", "#EDC53F", "#EDC22E"};
+		
+		theme2 = new String[] {"#eee4da", "#ede0c8", "#99FEFF", "#94DAFF", "#94B3FD", "#B983FF","#DADDFC","#BEAEE2","#CAB8FF","#39A2DB","#5C7AEA"};
+		
+		theme3 = new String[] {"#eee4da", "#ede0c8", "#9DD1AF", "#9BB494", "#68AB7A", "#628A6D", "#CCEFA5", "#ACCB8A", "#6BDB7D", "#ADF4B2", "#28D23F"};
 	}
 
 	/**
@@ -41,39 +40,11 @@ public class Settings {
 		return theme1;
 	}
 
+	/**
+	 * Access Method to get the current number of theme for testing purposes.
+	 * @return the theme number as an integer.
+	 */
 	public int getThemeNumber() {
 		return theme;
 	}
 }
-
-//package Model;
-///*
-// * 
-// * 
-// * 
-// */
-//public class Settings {
-//	private int theme = 1;
-//	private String [] theme1 = new String[5];
-//	private String [] theme2 = new String[5];
-//	private String [] theme3 = new String[5];
-//
-//	/*
-//	 * @param choice of theme (integer)
-//	 * @return the String array of color codes
-//	 */
-//	public String [] getTheme(int choice) {
-//		switch(choice) {
-//		case 1: theme = 1;
-//				return theme1;
-//		case 2: theme = 2;
-//				return theme2;
-//		case 3: theme = 3;
-//				return theme3;
-//		default:
-//			break;
-//		}
-//		return new String[5];
-//	}
-//	
-//}
