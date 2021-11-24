@@ -1,6 +1,9 @@
 
 package Model;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -12,19 +15,12 @@ public class Model extends JFrame implements KeyListener {
 	 * 
 	 */
 	Board game;
-  private static final int FRAME_THICKNESS = 16;
-  private int highCell;
+	private static final int FRAME_THICKNESS = 16;
  	private static final int GRID_WIDTH = 4;
   
 
-
-
-	
 	public Model(){
 		game = new Board();
-    		this.highCell = 0;
-    	//	initializeGrid();
-
         addKeyListener(this);
 	}
   
@@ -42,16 +38,6 @@ public class Model extends JFrame implements KeyListener {
 // 		}
 // 	}
 	
-  private boolean isGridFull() {
-		for (int x = 0; x < GRID_WIDTH; x++) {
-			for (int y = 0; y < GRID_WIDTH; y++) {
-				if (game.getTile(x, y) == null) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
 	 @Override
 	    public void keyTyped(KeyEvent e) {
 	        // invalid
@@ -63,11 +49,11 @@ public class Model extends JFrame implements KeyListener {
 	     * */
 	    public void keyPressed(KeyEvent e) {
 	        int keyCode = e.getKeyCode();
-
+	        if (!isMovePossible()) gameOver();
 	        switch (keyCode){
 	            case KeyEvent.VK_UP:
 	            	game.moveUp();
-	            	game.populateTiles();
+	            	if (!game.isBoardFull())game.populateTiles();
 	                break;
 
 	            case KeyEvent.VK_DOWN:
@@ -99,14 +85,6 @@ public class Model extends JFrame implements KeyListener {
 	    }
 	    
 	    
-	    public void setTheme(int choice) {
-	    	game.changeTheme(choice);
-	    }
-	    public String[] getTheme() {
-	    	return game.getThemeSettings().getTheme();
-	    }
-	    
-	    
 	    public int getScore() {
 	    	return game.getGameScore().getScore();
 	    }
@@ -115,13 +93,10 @@ public class Model extends JFrame implements KeyListener {
 	    	return game.getGameScore().getHighScore();
 	    }
 	   
-  public int getHighCell() {
-		return highCell;
-	}
+	    public int getHighCell() {
+	    	return game.getHighCell();
+	    }
   
-  	public void setHighCell(int highCell) {
-		this.highCell = highCell;
-	}
 
   	public void draw(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
@@ -130,15 +105,49 @@ public class Model extends JFrame implements KeyListener {
 
 		for (int x = 0; x < GRID_WIDTH; x++) {
 			for (int y = 0; y < GRID_WIDTH; y++) {
-				grid[x][y].draw(g);
+				if (game.getTile(x, y) != null) game.getTile(x, y).draw(g);
+				else {
+					g.setColor(Color.GRAY);
+					g.fillRect(x, y,
+			               120, 120);
+				}
 			}
 		}
+  	}
       
       public Dimension getPreferredSize() {
-		int width = GRID_WIDTH * Cell.getCellWidth() +
+		int width = GRID_WIDTH * Number.getCellWidth() +
 				FRAME_THICKNESS * 5;
 		return new Dimension(width, width);
 	}
+      
+   	public boolean isGameOver() {
+		return game.isBoardFull() && !isMovePossible();
+	}
+   	
+ 	private boolean isMovePossible() {
+		for (int x = 0; x < GRID_WIDTH; x++) {
+			for (int y = 0; y < (GRID_WIDTH - 1); y++) {
+				int yy = y + 1;
+				if (game.getTile(x, y).getNumValue() == game.getTile(x, yy).getNumValue()) return true;
+			}
+		}
+		for (int y = 0; y < GRID_WIDTH; y++) {
+			for (int x = 0; x < (GRID_WIDTH - 1); x++) {
+				int xx = x + 1;
+				if (game.getTile(x, y).getNumValue() == game.getTile(xx, y).getNumValue()) return true;
+			}
+		}
+		return false;
+	}
+ 	
+ 	public void gameOver() {
+ 	}
+
+}
+
+
+
 
 //	    public static void main(String [] args) {
 //	    	Model start = new Model();
@@ -201,7 +210,7 @@ public class Model extends JFrame implements KeyListener {
 //	    		System.out.println("\n");
 //	    	}
 //	    }
-=======
+
 
 
 //	private static final int GRID_WIDTH = 4;
@@ -239,9 +248,7 @@ public class Model extends JFrame implements KeyListener {
 // 		currentCell = 0;
 // 	}
 
-// 	public boolean isGameOver() {
-// 		return isGridFull() && !isMovePossible();
-// 	}
+
 
 // 	private boolean isGridFull() {
 // 		for (int x = 0; x < GRID_WIDTH; x++) {
@@ -542,4 +549,4 @@ public class Model extends JFrame implements KeyListener {
 // 	}
 // >>>>>>> main
 
-}
+

@@ -93,7 +93,7 @@ public class GameFrame extends JPanel {
     }
 
     public void exitProcedure() {
-//         model.setHighScores();
+//        model.setHighScores();
 //        highScoreProperties.saveProperties();
         frame.dispose();
         System.exit(0);

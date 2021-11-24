@@ -5,18 +5,19 @@ import java.util.Random;
 public class Board{
 
     private Number [][]boardData = new Number[4][4];
-    private Settings theme;
     private Score gameScore;
     private boolean gameWon;
     private boolean boardFull;
+    private int highCell;
+    
 
     public Board() {
-		theme = new Settings();
     	populateTiles();
 		populateTiles();
 		gameScore = new Score();
 		gameWon = false;
 		boardFull = false;
+		highCell = 2;
     }
     public void populateTiles() {
     	Random rand = new Random();
@@ -30,7 +31,7 @@ public class Board{
     	counter++;
     	}while (boardData[x_rand][y_rand] != null && counter <= 16);
     	if (counter == 16) boardFull = true;
-    	boardData[x_rand][y_rand] = new Number(x_rand, y_rand, theme.getTheme()[1]); 
+    	boardData[x_rand][y_rand] = new Number(x_rand, y_rand);
     }
     
     public Number getTile(int x, int y) {
@@ -45,6 +46,10 @@ public class Board{
     	return gameWon;
     }
     
+    public int getHighCell() {
+    	return highCell;
+    }
+    
     public boolean isBoardFull()
     {
     	return boardFull;
@@ -52,9 +57,9 @@ public class Board{
     
     public void combineMatch(Number tile) {
     	tile.updateNumber();
-		tile.setColor(theme.getTheme()[(int)(Math.log(tile.getNumValue() / Math.log(2)))]);
 		gameScore.updateScore(tile.getNumValue());
-    	if (tile.getNumValue() == 2048) gameWon = true;
+		if (highCell < tile.getNumValue()) highCell = tile.getNumValue();
+    	if (highCell == 2048) gameWon = true;
 		
     }
     
@@ -154,19 +159,13 @@ public class Board{
 //    }
     
     public void changeTheme(int choice) {
-    	theme.setTheme(choice);
-    	for (int x = 0; x < 4; x++) {
-    		for (int y = 0; y < 4; y++) {
-    			if (boardData[x][y] != null) {
-    				boardData[x][y].setColor(theme.getTheme()[(int)(Math.log(boardData[x][y].getNumValue() / Math.log(2)))]);
-    			}
+    	for (int i = 0; i < 4; i++) {
+    		for (int j = 0; j < 4; j++) {
+    			if (boardData[i][j] != null) boardData[i][j].setTheme(choice);
     		}
     	}
     }
     
-    public Settings getThemeSettings() {
-    	return theme;
-    }
 
 /*
  * MOVE METHODS: Makes calls to NEXT AVAILABLE METHODS and updates the Number Tiles of the Board(numValue and Coordinates)

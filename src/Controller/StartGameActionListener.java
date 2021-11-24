@@ -18,11 +18,10 @@ public class StartGameActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        model.setHighScores();
-        model.initializeGrid();
-        model.setArrowActive(true);
-        model.addNewCell();
-        model.addNewCell();
+       // model.setHighScores();
+        //model.setArrowActive(true);
+//        model.addNewCell();
+//        model.addNewCell();
 
         frame.repaintGridPanel();
         frame.updateScorePanel();

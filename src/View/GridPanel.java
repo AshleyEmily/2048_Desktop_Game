@@ -10,9 +10,9 @@ public class GridPanel extends JPanel{
 
     public GridPanel(Model model) {
         this.model = model;
-//         this.setPreferredSize(model.getPreferredSize());
-//        this.image = new GameOverImage(model);
-//        this.image.run();
+         this.setPreferredSize(model.getPreferredSize());
+//         this.image = new GameOverImage(model);
+//         this.image.run();
     }
 
     @Override
@@ -21,7 +21,7 @@ public class GridPanel extends JPanel{
         model.draw(g);
 
         if (model.isGameOver()) {
-//            g.drawImage(image.getImage(), 0, 0, null);
+            //g.drawImage(image.getImage(), 0, 0, null);
         }
     }
 }
