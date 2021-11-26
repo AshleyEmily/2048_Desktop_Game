@@ -2,6 +2,7 @@ package View;
 
 import Controller.StartGameActionListener;
 import Model.Model;
+import Model.Board;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,15 +12,17 @@ public class ControlPanel {
     private GameFrame frame;
     private Model model;
     private JPanel panel;
+    private Board board;
 
-    public ControlPanel(GameFrame frame, Model model) {
+    public ControlPanel(GameFrame frame, Model model, Board board) {
         this.frame = frame;
         this.model = model;
+        this.board = board;
         createPartControl();
     }
 
     private void createPartControl() {
-        StartGameActionListener listener = new StartGameActionListener(frame, model);
+        StartGameActionListener listener = new StartGameActionListener(frame, model, board);
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 

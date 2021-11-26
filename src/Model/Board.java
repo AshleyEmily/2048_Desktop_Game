@@ -263,7 +263,16 @@ public class Board{
     		}
     	}
     }
-    
+
+	public void board() {
+		populateTiles();
+		populateTiles();
+		gameScore = new Score();
+		gameWon = false;
+		boardFull = false;
+		highCell = 2;
+	}
+
 //    
 //    public Number[][] getBoardData() {
 //        // will change this later

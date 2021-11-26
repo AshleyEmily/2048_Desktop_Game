@@ -1,5 +1,9 @@
 package View;
 
+import Controller.DownAction;
+import Controller.LeftAction;
+import Controller.RightAction;
+import Controller.UpAction;
 import Model.Board;
 import Model.Model;
 
@@ -15,9 +19,12 @@ public class GameFrame extends JPanel {
     private GridPanel gridPanel;
     private JFrame frame;
     private ScorePanel scorePanel;
+    private Board board;
 
-    public GameFrame(Model model) {
+    public GameFrame(Model model, Board board) {
         this.model = model;
+        this.board = board;
+
 //        this.highScoreProperties = new HighScoreProperties(model);
 //        this.highScoreProperties.loadProperties();
         createPartControl();
@@ -26,7 +33,7 @@ public class GameFrame extends JPanel {
     private void createPartControl() {
         gridPanel = new GridPanel(model);
         scorePanel = new ScorePanel(model);
-        controlPanel = new ControlPanel(this, model);
+        controlPanel = new ControlPanel(this, model, board);
 
         frame = new JFrame();
         frame.setTitle("2048");
@@ -83,13 +90,13 @@ public class GameFrame extends JPanel {
 
 
 //        gridPanel.getActionMap().put("up arrow",
-//                new UpArrowAction(this, model));
-//        gridPanel.getActionMap().put("down arrow",
-//                new DownArrowAction(this, model));
+//                new UpAction(this, model));
+        gridPanel.getActionMap().put("down arrow",
+                new DownAction(this, model, board));
 //        gridPanel.getActionMap().put("left arrow",
-//                new LeftArrowAction(this, model));
+//                new LeftAction(this, model));
 //        gridPanel.getActionMap().put("right arrow",
-//                new RightArrowAction(this, model));
+//                new RightAction(this, model));
     }
 
     public void exitProcedure() {

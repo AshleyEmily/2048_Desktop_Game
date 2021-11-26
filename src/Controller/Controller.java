@@ -1,28 +1,41 @@
 //package Controller;
 //
 //
-//import Model.Model;
-//import View.View;
+//
+//
+//import Model.Board;
 //
 //import java.awt.event.ActionEvent;
+//import java.awt.event.KeyEvent;
 //
 //public class Controller {
-//    private Model model;
-//    private View view;
-//
-//    public static void main(String[] args) {
-//        new Controller();
-//    }
+//    Controller game;
 //
 //    public Controller(){
-//        model = new Model();
-//        view = new View();
-//        view.display();
+//        game = new Controller();
 //    }
 //
-//    public actionPerformed(ActionEvent e){
-//        model.getHighScore();
-//        model.getTheme();
+//    public void keyPressed(KeyEvent e){
+//        int keyCode = e.getKeyCode();
+////        if (!isMovePossible()) gameOver();
+//        switch (keyCode){
+//            case KeyEvent.VK_UP:
+//                break;
 //
+//            case KeyEvent.VK_DOWN:
+//
+//                break;
+//
+//            case KeyEvent.VK_RIGHT:
+//
+//                break;
+//
+//            case KeyEvent.VK_LEFT:
+//
+//                break;
+//
+//            default:
+//                break;
+//        }
 //    }
 //}
