@@ -34,6 +34,7 @@ public class StartGameActionListener implements ActionListener {
 //        model.cell();
         board.populateTiles();
         board.populateTiles();
+        model.initializeGrid();
         board.getGameScore();
         board.getGameStatus();
         board.isBoardFull();
