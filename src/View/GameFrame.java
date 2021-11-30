@@ -89,14 +89,14 @@ public class GameFrame extends JPanel {
         inputMap.put(KeyStroke.getKeyStroke("RIGHT"), "right arrow");
 
 
-//        gridPanel.getActionMap().put("up arrow",
-//                new UpAction(this, model));
+        gridPanel.getActionMap().put("up arrow",
+                new UpAction(this, model, board));
         gridPanel.getActionMap().put("down arrow",
                 new DownAction(this, model, board));
-//        gridPanel.getActionMap().put("left arrow",
-//                new LeftAction(this, model));
-//        gridPanel.getActionMap().put("right arrow",
-//                new RightAction(this, model));
+        gridPanel.getActionMap().put("left arrow",
+                new LeftAction(this, model, board));
+        gridPanel.getActionMap().put("right arrow",
+                new RightAction(this, model, board));
     }
 
     public void exitProcedure() {
