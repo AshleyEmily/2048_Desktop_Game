@@ -14,7 +14,7 @@ public class GridPanel extends JPanel{
     private static final int GRID_WIDTH = 4;
 
     private Cell[][] grid;
-    private Random random;
+//    private Random random;
     private Model model;
 
     public GridPanel(Model model) {
@@ -22,7 +22,8 @@ public class GridPanel extends JPanel{
         this.setPreferredSize(model.getPreferredSize());
 //         this.image = new GameOverImage(model);
 //         this.image.run();
-        this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
+        this.grid = model.getGrid();
+//        		new Cell[GRID_WIDTH][GRID_WIDTH];
     }
 
     public Dimension getPreferredSize() {

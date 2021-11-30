@@ -8,7 +8,8 @@ public class GameRunner implements Runnable {
 
     @Override
     public void run() {
-        new GameFrame(new Model(), new Board());
+    	Model game = new Model();
+        new GameFrame(game, game.getBoard());
     }
 
     public static void main(String[] args) {

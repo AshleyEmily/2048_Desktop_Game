@@ -13,7 +13,7 @@ public class Cell extends Settings {
     private static final int FRAME_THICKNESS = 16;
     private static final int GRID_WIDTH = 4;
 
-    private Cell[][] grid;
+    //private Cell[][] grid;
 
     private int value;
 

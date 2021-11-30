@@ -23,11 +23,22 @@ public class DownAction extends AbstractAction {
         if (model.isGameOver()){
 
         }else {
-            model.addNewCell();
-
-            board.populateTiles();
+        	System.out.println("DOWN before");
+            model.printCellGridandBoard();
+            
+            model.modelMoveDown();
+            
+        	System.out.println("DOWN after");
+            model.printCellGridandBoard();
+            
+            
             frame.updateScorePanel();
             frame.repaintGridPanel();
+
+            model.addNewCell();
+            frame.updateScorePanel();
+            frame.repaintGridPanel();
+
         }
 
     }

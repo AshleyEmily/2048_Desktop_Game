@@ -10,24 +10,53 @@ import java.util.Random;
 
 
 public class Model {
-	
 
 	Board game;
+	private Random random;
+	
+	//VIEW PURPOSES
 	private static final int FRAME_THICKNESS = 16;
  	private static final int GRID_WIDTH = 4;
-
-	 private Cell[][] grid;
-	 private Random random;
+	private Cell[][] grid;
 
 	public Model(){
 		game = new Board();
-//        addKeyListener(this);
-
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
 		this.random = new Random();
 		initializeGrid();
 	}
-  
+	
+	public Board getBoard() {
+		return game;
+	}
+	
+	public Cell[][] getGrid(){
+		return grid;
+	}
+	
+	public void modelMoveUp(){
+		game.moveUp();
+		updateCellGrid();
+	}
+	
+	public void modelMoveDown(){
+		game.moveDown();
+		updateCellGrid();
+	}
+	
+	public void modelMoveLeft(){
+		game.moveLeft();
+		updateCellGrid();
+	}
+	
+	public void modelMoveRight(){
+		game.moveRight();
+		updateCellGrid();
+	}
+	
+	
+	
+ //INITIALIZES VIEW COMPONENT OF BOARD
    	public void initializeGrid() {
  		int xx = FRAME_THICKNESS;
  		for (int x = 0; x < GRID_WIDTH; x++) {
@@ -42,21 +71,20 @@ public class Model {
  		}
  	}
 
+ // ADDS CELL AND NUMBER TILES BY RANDOM 	
 	 public void addNewCell(){
-		 int value = (random.nextInt(10) < 9) ?  2 : 4;
-
-		 boolean locationFound = false;
-		 while(!locationFound) {
-			 int x = random.nextInt(GRID_WIDTH);
-			 int y = random.nextInt(GRID_WIDTH);
-			 if (grid[x][y].isZeroValue()) {
-				 grid[x][y].setValue(value);
-				 locationFound = true;
-
-			 }
-		 }
+	    	int x_rand;
+	    	int y_rand;
+	    	do {
+	    	x_rand = random.nextInt(4);
+	    	y_rand = random.nextInt(4);
+	    	}while (game.getTile(x_rand, y_rand)!= null && grid[x_rand][y_rand].getValue() != 0);
+	    	grid[x_rand][y_rand].setValue(2);			 
+	    	game.populateTiles(x_rand, y_rand);
 	 }
-
+	 
+	 
+/**---------------------------------------------------------------**/
 	 /** NEED TO REMOVE DRAW AND GETPREFERREDSIZE FROM MODEL**/
   	public void draw(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
@@ -70,8 +98,8 @@ public class Model {
 		}
   	}
 
-      public Dimension getPreferredSize() {
-		int width = GRID_WIDTH * Number.getCellWidth() +
+   public Dimension getPreferredSize() {
+	   int width = GRID_WIDTH * Number.getCellWidth() +
 				FRAME_THICKNESS * 5;
 		return new Dimension(width, width);
 	}
@@ -113,6 +141,46 @@ public class Model {
 	public int getHighCell() {
 		return game.getHighCell();
 	}
+	
+	
+	//UPDATES THE VIEW COMPONENT OF THE BOARD
+	public void updateCellGrid() {
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 4; y++) {
+				if (game.getTile(x, y) == null) {
+					grid[x][y].setValue(0);
+				}
+				else {
+					grid[x][y].setValue(game.getTile(x, y).getNumValue());
+				}
+			}
+		}
+	}
+	
+	//FOR DEBUGGING PURPOSES
+	public void printCellGridandBoard() {
+		System.out.println("CELL GRID");
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 4; y++) {
+				System.out.print(" [" + grid[x][y].getValue() + "] ");
+			}
+			System.out.print("\n");
+		}
+		
+		System.out.println("\nBOARD");
+		for (int x = 0; x < 4; x++) {
+			for (int y = 0; y < 4; y++) {
+				if (game.getTile(x, y) == null) System.out.print(" [ ] ");
+				else System.out.print(" [" + game.getTile(x, y).getNumValue() + "] ");
+			}
+			System.out.print("\n");
+		}
+		System.out.print("\n________________________________\n");
+
+
+	}
+	
+
 
 }
 
