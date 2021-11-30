@@ -38,6 +38,5 @@ public class Number extends Settings{
 		return (that.numValue == this.numValue);
 	}
 
-
-
 }
+
