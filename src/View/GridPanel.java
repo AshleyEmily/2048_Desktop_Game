@@ -10,7 +10,7 @@ public class GridPanel extends JPanel{
 
     public GridPanel(Model model) {
         this.model = model;
-         this.setPreferredSize(model.getPreferredSize());
+        this.setPreferredSize(model.getPreferredSize());
 //         this.image = new GameOverImage(model);
 //         this.image.run();
     }

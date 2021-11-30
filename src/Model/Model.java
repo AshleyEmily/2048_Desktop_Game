@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.JFrame;
 
@@ -17,26 +18,49 @@ public class Model extends JFrame implements KeyListener {
 	Board game;
 	private static final int FRAME_THICKNESS = 16;
  	private static final int GRID_WIDTH = 4;
-  
+
+	 private Cell[][] grid;
+	 private Random random;
 
 	public Model(){
 		game = new Board();
         addKeyListener(this);
+
+		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
+		this.random = new Random();
+		initializeGrid();
 	}
   
-//   	public void initializeGrid() {
-// 		int xx = FRAME_THICKNESS;
-// 		for (int x = 0; x < GRID_WIDTH; x++) {
-// 			int yy = FRAME_THICKNESS;
-// 			for (int y = 0; y < GRID_WIDTH; y++) {
-// 				Cell cell = new Cell(0);
-// 				cell.setCellLocation(xx, yy);
-// 				grid[x][y] = cell;
-// 				yy += FRAME_THICKNESS + Cell.getCellWidth();
-// 			}
-// 			xx += FRAME_THICKNESS + Cell.getCellWidth();
-// 		}
-// 	}
+   	public void initializeGrid() {
+ 		int xx = FRAME_THICKNESS;
+ 		for (int x = 0; x < GRID_WIDTH; x++) {
+ 			int yy = FRAME_THICKNESS;
+ 			for (int y = 0; y < GRID_WIDTH; y++) {
+ 				Cell cell = new Cell(0);
+ 				cell.setCellLocation(xx, yy);
+ 				grid[x][y] = cell;
+ 				yy += FRAME_THICKNESS + Cell.getCellWidth();
+ 			}
+ 			xx += FRAME_THICKNESS + Cell.getCellWidth();
+ 		}
+ 	}
+
+	 public void addNewCell(){
+		 int value = (random.nextInt(10) < 9) ?  2 : 4;
+
+		 boolean locationFound = false;
+		 while(!locationFound) {
+			 int x = random.nextInt(GRID_WIDTH);
+			 int y = random.nextInt(GRID_WIDTH);
+			 if (grid[x][y].isZeroValue()) {
+				 grid[x][y].setValue(value);
+				 locationFound = true;
+
+			 }
+		 }
+	 }
+
+
 	
 	 @Override
 	    public void keyTyped(KeyEvent e) {
@@ -105,12 +129,13 @@ public class Model extends JFrame implements KeyListener {
 
 		for (int x = 0; x < GRID_WIDTH; x++) {
 			for (int y = 0; y < GRID_WIDTH; y++) {
-				if (game.getTile(x, y) != null) game.getTile(x, y).draw(g);
-				else {
-					g.setColor(Color.GRAY);
-					g.fillRect(x, y,
-			               120, 120);
-				}
+//				if (game.getTile(x, y) != null) game.getTile(x, y).draw(g);
+//				else {
+//					g.setColor(Color.BLUE);
+//					g.fillRect(x, y,
+//			               120, 120);
+//				}
+				grid[x][y].draw(g);
 			}
 		}
   	}
