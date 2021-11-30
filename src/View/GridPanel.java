@@ -1,11 +1,20 @@
 package View;
 
+import Controller.Cell;
 import Model.Model;
 
+
 import java.awt.*;
+import java.util.Random;
 import javax.swing.*;
 public class GridPanel extends JPanel{
 
+//    Board game;
+    private static final int FRAME_THICKNESS = 16;
+    private static final int GRID_WIDTH = 4;
+
+    private Cell[][] grid;
+    private Random random;
     private Model model;
 
     public GridPanel(Model model) {
@@ -13,6 +22,13 @@ public class GridPanel extends JPanel{
         this.setPreferredSize(model.getPreferredSize());
 //         this.image = new GameOverImage(model);
 //         this.image.run();
+        this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
+    }
+
+    public Dimension getPreferredSize() {
+        int width = GRID_WIDTH * Cell.getCellWidth() +
+                FRAME_THICKNESS * 5;
+        return new Dimension(width, width);
     }
 
     @Override

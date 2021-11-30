@@ -23,6 +23,8 @@ public class DownAction extends AbstractAction {
         if (model.isGameOver()){
 
         }else {
+            model.addNewCell();
+
             board.populateTiles();
             frame.updateScorePanel();
             frame.repaintGridPanel();
