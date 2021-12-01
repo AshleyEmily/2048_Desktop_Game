@@ -26,10 +26,9 @@ public class ControlPanel {
 
     private void createPartControl() {
         StartGameActionListener listener = new StartGameActionListener(frame, model, board);
-//        Settings settingsListener = new Settings();
-        Theme1Listener theme1Listener = new Theme1Listener();
+        Theme1Listener theme1Listener = new Theme1Listener(frame, model, board);
         Theme2Listener theme2Listener = new Theme2Listener(frame, model, board);
-        Theme3Listener theme3Listener = new Theme3Listener();
+        Theme3Listener theme3Listener = new Theme3Listener(frame, model, board);
 
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
@@ -41,15 +40,15 @@ public class ControlPanel {
         addComponent(panel, startGameButton, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
 
         // need to figure out how to make the listener do a popup
-        JButton theme1Button = new JButton("THEME 1");
+        JButton theme1Button = new JButton("CLASSIC THEME");
         theme1Button.addActionListener(theme1Listener);
         addComponent(panel, theme1Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
 
-        JButton theme2Button = new JButton("THEME 2");
+        JButton theme2Button = new JButton("SKY THEME");
         theme2Button.addActionListener(theme2Listener);
         addComponent(panel, theme2Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
 
-        JButton theme3Button = new JButton("THEME 3");
+        JButton theme3Button = new JButton("FOREST THEME");
         theme3Button.addActionListener(theme3Listener);
         addComponent(panel, theme3Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
     }

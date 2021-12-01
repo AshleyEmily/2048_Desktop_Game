@@ -1,5 +1,6 @@
 
 package Model;
+import Controller.Settings;
 
 import Controller.Cell;
 
@@ -18,6 +19,7 @@ public class Model {
 	private static final int FRAME_THICKNESS = 16;
  	private static final int GRID_WIDTH = 4;
 	private Cell[][] grid;
+	public Settings themes;
 
 	 /**Add*/
 	 private boolean arrowActive;
@@ -27,9 +29,14 @@ public class Model {
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
 		this.random = new Random();
 		initializeGrid();
+		themes = new Settings();
 
 		/**Add*/
 		this.arrowActive = false;
+	}
+	
+	public void setTheme(int choice) {
+		themes.setTheme(choice);
 	}
 	
 	public Board getBoard() {
@@ -85,7 +92,8 @@ public class Model {
 	    	x_rand = random.nextInt(4);
 	    	y_rand = random.nextInt(4);
 	    	}while (game.getTile(x_rand, y_rand)!= null && grid[x_rand][y_rand].getValue() != 0);
-	    	grid[x_rand][y_rand].setValue(2);			 
+	    	grid[x_rand][y_rand].setValue(2);
+	    	grid[x_rand][y_rand].setCellColor(Color.decode(themes.getTheme()[0]));
 	    	game.populateTiles(x_rand, y_rand);
 	 }
 	 
@@ -158,6 +166,8 @@ public class Model {
 				}
 				else {
 					grid[x][y].setValue(game.getTile(x, y).getNumValue());
+			    	grid[x][y].setCellColor(getTileColor(grid[x][y].getValue()));
+
 				}
 			}
 		}
@@ -263,6 +273,41 @@ public class Model {
 		}
 		return dirty;
 	}
+	
+	private Color getTileColor(int value) {
+      Color color = Color.WHITE;
+
+      switch (value) {
+//          case 2:     color = new Color(238, 228, 218);
+//              break;
+          case 2:     color = Color.decode(themes.getTheme()[0]);
+              break;
+          case 4:     color = Color.decode(themes.getTheme()[1]);
+              break;
+          case 8:     color = Color.decode(themes.getTheme()[2]);
+              break;
+          case 16:    color = Color.decode(themes.getTheme()[3]);
+              break;
+          case 32:    color = Color.decode(themes.getTheme()[4]);
+              break;
+          case 64:    color = Color.decode(themes.getTheme()[5]);
+              break;
+          case 128:   color = Color.decode(themes.getTheme()[6]);
+              break;
+          case 256:   color = Color.decode(themes.getTheme()[7]);
+              break;
+          case 512:   color = Color.decode(themes.getTheme()[8]);
+              break;
+          case 1024:  color = Color.decode(themes.getTheme()[9]);
+              break;
+          case 2048:  color = Color.decode(themes.getTheme()[10]);
+              break;
+          default:    color = new Color(43, 43, 0);
+              break;
+      }
+
+      return color;
+  }
 
 }
 
