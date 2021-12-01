@@ -21,25 +21,26 @@ public class UpAction extends AbstractAction {
     }
 
     public void actionPerformed(ActionEvent event){
-        if (model.isGameOver()){
+        if(model.ArrowActive()){
+            if (model.isGameOver()){
+                model.setArrowActive(false);
+            }else {
+                System.out.println("UP before");
+                model.printCellGridandBoard();
 
-        }else {
-        	System.out.println("UP before");
-            model.printCellGridandBoard();
-            
-            model.modelMoveUp();
+                model.modelMoveUp();
 //            model.modelMoveLeft();
-            
-        	System.out.println("UP after");
-            model.printCellGridandBoard();
 
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
-            
-            model.addNewCell();
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                System.out.println("UP after");
+                model.printCellGridandBoard();
 
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+
+                model.addNewCell();
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+            }
         }
 
     }

@@ -21,26 +21,26 @@ public class RightAction extends AbstractAction {
     }
 
     public void actionPerformed(ActionEvent event){
-        if (model.isGameOver()){
+        if(model.ArrowActive()){
+            if (model.isGameOver()){
+                model.setArrowActive(false);
+            }else {
+                System.out.println("RIGHT before");
+                model.printCellGridandBoard();
 
-        }else {
-        	System.out.println("RIGHT before");
-            model.printCellGridandBoard();
-            
-            model.modelMoveRight();
-//            model.modelMoveDown();
-            
-        	System.out.println("RIGHT after");
-            model.printCellGridandBoard();
-            
-            
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                model.modelMoveRight();
 
-            model.addNewCell();
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                System.out.println("RIGHT after");
+                model.printCellGridandBoard();
 
+
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+
+                model.addNewCell();
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+            }
         }
 
     }

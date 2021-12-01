@@ -189,7 +189,7 @@ public class Model {
 
 
 	/**Add*/
-	public boolean isArrowActive(){
+	public boolean ArrowActive(){
 		return arrowActive;
 	}
 

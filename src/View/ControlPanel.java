@@ -6,6 +6,7 @@ import Model.Board;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class ControlPanel {
     private static final Insets regularInsets = new Insets(10, 10, 0, 10); //sets padding
@@ -29,7 +30,11 @@ public class ControlPanel {
         int gridY = 0;
 
         JButton startGameButton = new JButton("START GAME");
-        startGameButton.addActionListener(listener);
+        startGameButton.addActionListener(listener{
+           public void actionPerformed(ActionEvent e){
+                model.setArrowActive(true);
+            }
+        });
 
         addComponent(panel, startGameButton, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
     }

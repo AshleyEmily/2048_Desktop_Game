@@ -20,26 +20,27 @@ public class DownAction extends AbstractAction {
     }
 
     public void actionPerformed(ActionEvent event){
-        if (model.isGameOver()){
+        if(model.ArrowActive()){
+            if (model.isGameOver()){
+                model.setArrowActive(false);
+            }else {
+                System.out.println("DOWN before");
+                model.printCellGridandBoard();
 
-        }else {
-        	System.out.println("DOWN before");
-            model.printCellGridandBoard();
-            
-            model.modelMoveDown();
-//            model.modelMoveRight();
-            
-        	System.out.println("DOWN after");
-            model.printCellGridandBoard();
-            
-            
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                model.modelMoveDown();
 
-            model.addNewCell();
-            frame.updateScorePanel();       //Why repaint again?
-            frame.repaintGridPanel();
+                System.out.println("DOWN after");
+                model.printCellGridandBoard();
 
+
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+
+                model.addNewCell();
+                frame.updateScorePanel();       //Why repaint again?
+                frame.repaintGridPanel();
+
+            }
         }
 
     }

@@ -28,6 +28,7 @@ public class StartGameActionListener implements ActionListener {
     public void actionPerformed(ActionEvent event) {
 //        model.getHighScore();
         model.initializeGrid();
+        model.setArrowActive(false);
         board.getGameScore();
         board.getGameStatus();
         board.isBoardFull();

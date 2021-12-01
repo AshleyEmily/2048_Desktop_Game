@@ -21,26 +21,26 @@ public class LeftAction extends AbstractAction {
     }
 
     public void actionPerformed(ActionEvent event){
-        if (model.isGameOver()){
+        if(model.ArrowActive()){
+            if (model.isGameOver()){
+                model.setArrowActive(false);
+            }else {
+                System.out.println("LEFT before");
+                model.printCellGridandBoard();
 
-        }else {
-        	System.out.println("LEFT before");
-            model.printCellGridandBoard();
-            
-            model.modelMoveLeft();
-//            model.modelMoveUp();
-            
-        	System.out.println("LEFT after");
-            model.printCellGridandBoard();
-            
-            
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                model.modelMoveLeft();
 
-            model.addNewCell();
-            frame.updateScorePanel();
-            frame.repaintGridPanel();
+                System.out.println("LEFT after");
+                model.printCellGridandBoard();
 
+
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+
+                model.addNewCell();
+                frame.updateScorePanel();
+                frame.repaintGridPanel();
+            }
         }
 
     }
