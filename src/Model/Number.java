@@ -1,6 +1,8 @@
 package Model;
 
-public class Number extends Settings{
+import Controller.Settings;
+
+public class Number extends Settings {
 	private int numValue;
 	private int xCoord;
 	private int yCoord;

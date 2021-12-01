@@ -25,20 +25,12 @@ public class LeftAction extends AbstractAction {
             if (model.isGameOver()){
                 model.setArrowActive(false);
             }else {
-                System.out.println("LEFT before");
-                model.printCellGridandBoard();
-
                 model.modelMoveLeft();
-
-                System.out.println("LEFT after");
-                model.printCellGridandBoard();
-
 
                 frame.updateScorePanel();
                 frame.repaintGridPanel();
 
                 model.addNewCell();
-                frame.updateScorePanel();
                 frame.repaintGridPanel();
             }
         }

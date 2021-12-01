@@ -1,6 +1,4 @@
 package Controller;
-import Model.Model;
-import Model.Settings;
 
 
 import java.awt.*;
@@ -103,27 +101,29 @@ public class Cell extends Settings {
         Color color = Color.WHITE;
 
         switch (value) {
-            case 2:     color = new Color(238, 228, 218);
+//            case 2:     color = new Color(238, 228, 218);
+//                break;
+            case 2:     color = Color.decode(getTheme()[0]);
                 break;
-            case 4:     color = new Color(237, 224, 200);
+            case 4:     color = Color.decode(getTheme()[1]);
                 break;
-            case 8:     color = new Color(242, 177, 121);
+            case 8:     color = Color.decode(getTheme()[2]);
                 break;
-            case 16:    color = new Color(245, 149, 99);
+            case 16:    color = Color.decode(getTheme()[3]);
                 break;
-            case 32:    color = new Color(246, 124, 95);
+            case 32:    color = Color.decode(getTheme()[4]);
                 break;
-            case 64:    color = new Color(246, 94, 59);
+            case 64:    color = Color.decode(getTheme()[5]);
                 break;
-            case 128:   color = new Color(237, 207, 114);
+            case 128:   color = Color.decode(getTheme()[6]);
                 break;
-            case 256:   color = new Color(237, 204, 97);
+            case 256:   color = Color.decode(getTheme()[7]);
                 break;
-            case 512:   color = new Color(237, 200, 80);
+            case 512:   color = Color.decode(getTheme()[8]);
                 break;
-            case 1024:  color = new Color(237, 197, 63);
+            case 1024:  color = Color.decode(getTheme()[9]);
                 break;
-            case 2048:  color = new Color(237, 194, 46);
+            case 2048:  color = Color.decode(getTheme()[10]);
                 break;
             default:    color = new Color(43, 43, 0);
                 break;

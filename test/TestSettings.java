@@ -1,6 +1,6 @@
 //import org.junit.*;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
-//import Model.Settings;
+//import Controller.Settings;
 //
 //public class TestSettings {
 //    @Test public void testSetTheme() {

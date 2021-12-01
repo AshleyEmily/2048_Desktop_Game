@@ -1,6 +1,8 @@
 package View;
 
+import Controller.*;
 import Controller.StartGameActionListener;
+import Controller.Theme1Listener;
 import Model.Model;
 import Model.Board;
 
@@ -24,20 +26,34 @@ public class ControlPanel {
 
     private void createPartControl() {
         StartGameActionListener listener = new StartGameActionListener(frame, model, board);
+//        Settings settingsListener = new Settings();
+        Theme1Listener theme1Listener = new Theme1Listener();
+        Theme2Listener theme2Listener = new Theme2Listener(frame, model, board);
+        Theme3Listener theme3Listener = new Theme3Listener();
+
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
 
         int gridY = 0;
 
         JButton startGameButton = new JButton("START GAME");
-        startGameButton.addActionListener(listener{
-           public void actionPerformed(ActionEvent e){
-                model.setArrowActive(true);
-            }
-        });
-
+        startGameButton.addActionListener(listener);
         addComponent(panel, startGameButton, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
+
+        // need to figure out how to make the listener do a popup
+        JButton theme1Button = new JButton("THEME 1");
+        theme1Button.addActionListener(theme1Listener);
+        addComponent(panel, theme1Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
+
+        JButton theme2Button = new JButton("THEME 2");
+        theme2Button.addActionListener(theme2Listener);
+        addComponent(panel, theme2Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
+
+        JButton theme3Button = new JButton("THEME 3");
+        theme3Button.addActionListener(theme3Listener);
+        addComponent(panel, theme3Button, 0, gridY++, 1, 1, regularInsets, GridBagConstraints.LINE_START, GridBagConstraints.HORIZONTAL);
     }
+
 
     private void addComponent(Container container, Component component, int gridX, int gridY, int gridWidth, int gridHeight,
             Insets insets, int anchor, int fill) {

@@ -24,20 +24,12 @@ public class DownAction extends AbstractAction {
             if (model.isGameOver()){
                 model.setArrowActive(false);
             }else {
-                System.out.println("DOWN before");
-                model.printCellGridandBoard();
-
                 model.modelMoveDown();
-
-                System.out.println("DOWN after");
-                model.printCellGridandBoard();
-
 
                 frame.updateScorePanel();
                 frame.repaintGridPanel();
 
                 model.addNewCell();
-                frame.updateScorePanel();       //Why repaint again?
                 frame.repaintGridPanel();
 
             }

@@ -25,20 +25,12 @@ public class UpAction extends AbstractAction {
             if (model.isGameOver()){
                 model.setArrowActive(false);
             }else {
-                System.out.println("UP before");
-                model.printCellGridandBoard();
-
                 model.modelMoveUp();
-//            model.modelMoveLeft();
-
-                System.out.println("UP after");
-                model.printCellGridandBoard();
 
                 frame.updateScorePanel();
                 frame.repaintGridPanel();
 
                 model.addNewCell();
-                frame.updateScorePanel();
                 frame.repaintGridPanel();
             }
         }

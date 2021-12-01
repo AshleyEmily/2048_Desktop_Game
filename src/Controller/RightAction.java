@@ -25,20 +25,12 @@ public class RightAction extends AbstractAction {
             if (model.isGameOver()){
                 model.setArrowActive(false);
             }else {
-                System.out.println("RIGHT before");
-                model.printCellGridandBoard();
-
                 model.modelMoveRight();
-
-                System.out.println("RIGHT after");
-                model.printCellGridandBoard();
-
 
                 frame.updateScorePanel();
                 frame.repaintGridPanel();
 
                 model.addNewCell();
-                frame.updateScorePanel();
                 frame.repaintGridPanel();
             }
         }
