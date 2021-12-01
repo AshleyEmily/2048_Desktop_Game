@@ -28,6 +28,7 @@ public class RightAction extends AbstractAction {
             model.printCellGridandBoard();
             
             model.modelMoveRight();
+//            model.modelMoveDown();
             
         	System.out.println("RIGHT after");
             model.printCellGridandBoard();

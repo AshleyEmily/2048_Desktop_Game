@@ -27,6 +27,7 @@ public class DownAction extends AbstractAction {
             model.printCellGridandBoard();
             
             model.modelMoveDown();
+//            model.modelMoveRight();
             
         	System.out.println("DOWN after");
             model.printCellGridandBoard();
@@ -36,7 +37,7 @@ public class DownAction extends AbstractAction {
             frame.repaintGridPanel();
 
             model.addNewCell();
-            frame.updateScorePanel();
+            frame.updateScorePanel();       //Why repaint again?
             frame.repaintGridPanel();
 
         }

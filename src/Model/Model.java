@@ -19,11 +19,17 @@ public class Model {
  	private static final int GRID_WIDTH = 4;
 	private Cell[][] grid;
 
+	 /**Add*/
+	 private boolean arrowActive;
+
 	public Model(){
 		game = new Board();
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
 		this.random = new Random();
 		initializeGrid();
+
+		/**Add*/
+		this.arrowActive = false;
 	}
 	
 	public Board getBoard() {
@@ -181,6 +187,82 @@ public class Model {
 	}
 	
 
+
+	/**Add*/
+	public boolean isArrowActive(){
+		return arrowActive;
+	}
+
+	public void setArrowActive(boolean arrowActive){
+		this.arrowActive = arrowActive;
+	}
+
+	public boolean moveCellsDown() {
+		boolean dirty = false;
+
+		if (moveCellsDownLoop())    dirty = true;
+
+		for (int x = 0; x < GRID_WIDTH; x++) {
+			for (int y = GRID_WIDTH - 1; y > 0; y--) {
+				int yy = y - 1;
+				dirty = combineCells(x, yy, x, y, dirty);
+			}
+		}
+
+		if (moveCellsDownLoop())    dirty = true;
+
+		return dirty;
+	}
+
+	private boolean moveCellsDownLoop() {
+		boolean dirty = false;
+
+		for (int x = 0; x < GRID_WIDTH; x++) {
+			boolean columnDirty = false;
+			do {
+				columnDirty = false;
+				for (int y = GRID_WIDTH - 1; y > 0; y--) {
+					int yy = y - 1;
+					boolean cellDirty = moveCell(x, yy, x, y);
+					if (cellDirty) {
+						columnDirty = true;
+						dirty = true;
+					}
+				}
+			} while (columnDirty);
+		}
+
+		return dirty;
+	}
+
+	private boolean combineCells(int x1, int y1, int x2, int y2,
+								 boolean dirty) {
+		if (!grid[x1][y1].isZeroValue()) {
+			int value = grid[x1][y1].getValue();
+			if (grid[x2][y2].getValue() == value) {
+				int newValue = value + value;
+				grid[x2][y2].setValue(newValue);
+				grid[x1][y1].setValue(0);
+//				updateScore(newValue, newValue);
+				dirty = true;
+			}
+		}
+		return dirty;
+	}
+	private boolean moveCell(int x1, int y1, int x2, int y2) {
+		boolean dirty = false;
+		if (!grid[x1][y1].isZeroValue()
+				&& (grid[x2][y2].isZeroValue())) {
+//			if (DEBUG) {
+//				System.out.println(displayMoveCell(x1, y1, x2, y2));
+//			}
+			int value = grid[x1][y1].getValue();
+			grid[x2][y2].setValue(value);
+			grid[x1][y1].setValue(0);
+			dirty = true;
+		}
+		return dirty;
+	}
 
 }
 

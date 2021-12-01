@@ -28,6 +28,7 @@ public class LeftAction extends AbstractAction {
             model.printCellGridandBoard();
             
             model.modelMoveLeft();
+//            model.modelMoveUp();
             
         	System.out.println("LEFT after");
             model.printCellGridandBoard();

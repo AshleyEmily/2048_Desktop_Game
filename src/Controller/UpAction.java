@@ -28,6 +28,7 @@ public class UpAction extends AbstractAction {
             model.printCellGridandBoard();
             
             model.modelMoveUp();
+//            model.modelMoveLeft();
             
         	System.out.println("UP after");
             model.printCellGridandBoard();

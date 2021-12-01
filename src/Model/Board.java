@@ -73,93 +73,94 @@ public class Board{
  */
    
     public void moveDown() {
-    	SeekCellsContext context = new SeekCellsContext(new seekCellsUpCol());
-    	for (int i = 3; i >= 0; i--) {						//from bottom up
-    		int next;
-    		for (int j = 0; j < 4; j++) {					//left to right
-    			if (boardData[i][j] == null) continue;
-    			next = context.executeMethod(i, j, boardData);
-    			
-    			if (i == next) continue; 					//does not move tile
-    			else if (boardData[next][j] == null) {		//moves to empty cell
-    				boardData[i][j].moveToNewPlace(next, j);
-    				boardData[next][j] = boardData[i][j];
-    			}
-    			else{										//moves to matched tile
-    				boardData[i][j].moveToNewPlace(next, j);
-    				boardData[next][j] = boardData[i][j];
-    				combineMatch(boardData[next][j]);
-    			}
-    			boardData[i][j] = null;
-    		}
-    	}
+		SeekCellsContext context = new SeekCellsContext(new seekCellsRightRow());
+		for (int j = 3; j >= 0; j--) {						//from left to right
+			int next;
+			for (int i = 0; i < 4; i++) {					//top to bottom
+				if (boardData[i][j] == null) continue;
+				next = context.executeMethod(i, j, boardData);
+				if (j == next) continue; 					//does not move tile
+				else if (boardData[i][next] == null) {		//moves to empty cell
+					boardData[i][j].moveToNewPlace(i, next);
+					boardData[i][next] = boardData[i][j];
+				}
+				else{										//moves to matched tile
+					boardData[i][j].moveToNewPlace(i, next);
+					boardData[i][next] = boardData[i][j];
+					combineMatch(boardData[i][next]);
+				}
+				boardData[i][j] = null;
+			}
+		}
     }
     
     public void moveUp() {
-    	SeekCellsContext context = new SeekCellsContext(new seekCellsDownCol());
-    	for (int i = 0; i < 4; i++) {						//from up to down
-    		int next;
-    		for (int j = 0; j < 4; j++) {					//left to right
-    			if (boardData[i][j] == null) continue;
-    			next = context.executeMethod(i, j, boardData);
-    			
-    			if (i == next) continue; 					//does not move tile
-    			else if (boardData[next][j] == null) {		//moves to empty cell
-    				boardData[i][j].moveToNewPlace(next, j);
-    				boardData[next][j] = boardData[i][j];
-    			}
-    			else{										//moves to matched tile
-    				boardData[i][j].moveToNewPlace(next, j);
-    				boardData[next][j] = boardData[i][j];
-    				combineMatch(boardData[next][j]);
-    			}
-    			boardData[i][j] = null;
-    		}
-    	}
+		SeekCellsContext context = new SeekCellsContext(new seekCellsLeftRow());
+		for (int j = 0; j < 4; j++) {						//from right to left
+			int next;
+			for (int i = 0; i < 4; i++) {					//top to bottom
+				if (boardData[i][j] == null) continue;
+				next = context.executeMethod(i, j, boardData);;
+				if (j == next) continue; 					//does not move tile
+				else if (boardData[i][next] == null) {		//move to empty cell
+					boardData[i][j].moveToNewPlace(i, next);
+					boardData[i][next] = boardData[i][j];
+				}
+				else{										//move to matched tile
+					boardData[i][j].moveToNewPlace(i, next);
+					boardData[i][next] = boardData[i][j];
+					combineMatch(boardData[i][next]);
+				}
+				boardData[i][j] = null;
+			}
+		}
     }
     
     public void moveRight() {
-    	SeekCellsContext context = new SeekCellsContext(new seekCellsRightRow());
-    	for (int j = 3; j >= 0; j--) {						//from left to right
-    		int next;
-    		for (int i = 0; i < 4; i++) {					//top to bottom
-    			if (boardData[i][j] == null) continue;
-    			next = context.executeMethod(i, j, boardData);
-    			if (j == next) continue; 					//does not move tile
-    			else if (boardData[i][next] == null) {		//moves to empty cell
-    				boardData[i][j].moveToNewPlace(i, next);
-    				boardData[i][next] = boardData[i][j];
-    			}
-    			else{										//moves to matched tile
-    				boardData[i][j].moveToNewPlace(i, next);
-    				boardData[i][next] = boardData[i][j];
-    				combineMatch(boardData[i][next]);
-    			}
-    			boardData[i][j] = null;
-    		}
-    	}
+
+		SeekCellsContext context = new SeekCellsContext(new seekCellsUpCol());
+		for (int i = 3; i >= 0; i--) {						//from bottom up
+			int next;
+			for (int j = 0; j < 4; j++) {					//left to right
+				if (boardData[i][j] == null) continue;
+				next = context.executeMethod(i, j, boardData);
+
+				if (i == next) continue; 					//does not move tile
+				else if (boardData[next][j] == null) {		//moves to empty cell
+					boardData[i][j].moveToNewPlace(next, j);
+					boardData[next][j] = boardData[i][j];
+				}
+				else{										//moves to matched tile
+					boardData[i][j].moveToNewPlace(next, j);
+					boardData[next][j] = boardData[i][j];
+					combineMatch(boardData[next][j]);
+				}
+				boardData[i][j] = null;
+			}
+		}
     }
     
     public void moveLeft() {
-    	SeekCellsContext context = new SeekCellsContext(new seekCellsLeftRow());
-    	for (int j = 0; j < 4; j++) {						//from right to left
-    		int next;
-    		for (int i = 0; i < 4; i++) {					//top to bottom
-    			if (boardData[i][j] == null) continue;
-    			next = context.executeMethod(i, j, boardData);;
-    			if (j == next) continue; 					//does not move tile
-    			else if (boardData[i][next] == null) {		//move to empty cell
-    				boardData[i][j].moveToNewPlace(i, next);
-    				boardData[i][next] = boardData[i][j];
-    			}
-    			else{										//move to matched tile	
-    				boardData[i][j].moveToNewPlace(i, next);
-    				boardData[i][next] = boardData[i][j];
-    				combineMatch(boardData[i][next]);
-    			}
-    			boardData[i][j] = null;
-    		}
-    	}
+    	SeekCellsContext context = new SeekCellsContext(new seekCellsDownCol());
+		for (int i = 0; i < 4; i++) {						//from up to down
+			int next;
+			for (int j = 0; j < 4; j++) {					//left to right
+				if (boardData[i][j] == null) continue;
+				next = context.executeMethod(i, j, boardData);
+
+				if (i == next) continue; 					//does not move tile
+				else if (boardData[next][j] == null) {		//moves to empty cell
+					boardData[i][j].moveToNewPlace(next, j);
+					boardData[next][j] = boardData[i][j];
+				}
+				else{										//moves to matched tile
+					boardData[i][j].moveToNewPlace(next, j);
+					boardData[next][j] = boardData[i][j];
+					combineMatch(boardData[next][j]);
+				}
+				boardData[i][j] = null;
+			}
+		}
     }
 
 }
