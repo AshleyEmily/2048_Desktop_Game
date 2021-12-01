@@ -16,6 +16,8 @@ public class Cell extends Settings {
     private int value;
 
     private Point cellLocation;
+    
+    public Color cellColor;
 
     public Cell() {
 //        setValue(value);
@@ -37,6 +39,10 @@ public class Cell extends Settings {
         return (value == 0);
     }
 
+    public void setCellColor(Color c) {
+    	cellColor = c;
+    }
+    
     public void setCellLocation(int x, int y) {
         setCellLocation(new Point(x, y));
     }
@@ -83,7 +89,9 @@ public class Cell extends Settings {
                 BufferedImage.TYPE_INT_RGB);
 
         Graphics gg = image.getGraphics();
-        gg.setColor(getTileColor());
+//        gg.setColor(getTileColor());
+          gg.setColor(cellColor);
+
         gg.fillRect(0, 0, image.getWidth(), image.getHeight());
 
         int x = (width / 2) - (rWidth / 2) - rX;
@@ -97,40 +105,40 @@ public class Cell extends Settings {
     }
 
     // doesn't directly change colors, just holds value of the color intended for each tile
-    private Color getTileColor() {
-        Color color = Color.WHITE;
-
-        switch (value) {
-//            case 2:     color = new Color(238, 228, 218);
+//    private Color getTileColor() {
+//        Color color = Color.WHITE;
+//
+//        switch (value) {
+////            case 2:     color = new Color(238, 228, 218);
+////                break;
+//            case 2:     color = Color.decode(getTheme()[0]);
 //                break;
-            case 2:     color = Color.decode(getTheme()[0]);
-                break;
-            case 4:     color = Color.decode(getTheme()[1]);
-                break;
-            case 8:     color = Color.decode(getTheme()[2]);
-                break;
-            case 16:    color = Color.decode(getTheme()[3]);
-                break;
-            case 32:    color = Color.decode(getTheme()[4]);
-                break;
-            case 64:    color = Color.decode(getTheme()[5]);
-                break;
-            case 128:   color = Color.decode(getTheme()[6]);
-                break;
-            case 256:   color = Color.decode(getTheme()[7]);
-                break;
-            case 512:   color = Color.decode(getTheme()[8]);
-                break;
-            case 1024:  color = Color.decode(getTheme()[9]);
-                break;
-            case 2048:  color = Color.decode(getTheme()[10]);
-                break;
-            default:    color = new Color(43, 43, 0);
-                break;
-        }
-
-        return color;
-    }
+//            case 4:     color = Color.decode(getTheme()[1]);
+//                break;
+//            case 8:     color = Color.decode(getTheme()[2]);
+//                break;
+//            case 16:    color = Color.decode(getTheme()[3]);
+//                break;
+//            case 32:    color = Color.decode(getTheme()[4]);
+//                break;
+//            case 64:    color = Color.decode(getTheme()[5]);
+//                break;
+//            case 128:   color = Color.decode(getTheme()[6]);
+//                break;
+//            case 256:   color = Color.decode(getTheme()[7]);
+//                break;
+//            case 512:   color = Color.decode(getTheme()[8]);
+//                break;
+//            case 1024:  color = Color.decode(getTheme()[9]);
+//                break;
+//            case 2048:  color = Color.decode(getTheme()[10]);
+//                break;
+//            default:    color = new Color(43, 43, 0);
+//                break;
+//        }
+//
+//        return color;
+//    }
 
     private Color getTextColor() {
         return (value >= 256) ? Color.WHITE : Color.BLACK;

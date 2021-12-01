@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * 
  * 
  */
-public class Settings implements ActionListener {
+public class Settings{
 	private int theme = 1;
 	public String[] theme1 = new String[] {"#eee4da", "#ede0c8", "#f2b179", "#f59563", "#F67C5F", "#F65E3B", "#EDCF72", "#EDCC61", "#EDC850", "#EDC53F", "#EDC22E"};
 
@@ -52,10 +52,10 @@ public class Settings implements ActionListener {
 		return theme;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		System.out.println("Theme changed");
-
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		System.out.println("Theme changed");
+//
+//	}
 }
 

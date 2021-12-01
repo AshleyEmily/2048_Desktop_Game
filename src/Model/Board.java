@@ -14,6 +14,7 @@ public class Board{
 		gameScore = new Score();
 		gameWon = false;
 		highCell = 0;
+		totalTiles = 0;
     }
     public void populateTiles(int x_rand, int y_rand) {
     	boardData[x_rand][y_rand] = new Number(x_rand, y_rand);
