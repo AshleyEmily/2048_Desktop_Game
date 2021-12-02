@@ -22,8 +22,9 @@ public class UpAction extends AbstractAction {
 
     public void actionPerformed(ActionEvent event){
         if(model.ArrowActive()){
-            if (model.isGameOver()){
+            if (model.isGameOver() == true){
                 model.setArrowActive(false);
+                System.out.println("GAME OVER");
             }else {
                 model.modelMoveUp();
 
