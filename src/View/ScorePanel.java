@@ -67,18 +67,6 @@ public class ScorePanel {
         addComponent(panel, currentScoreField, 1, gridy++, 1, 1,
                 regularInsets, GridBagConstraints.LINE_START,
                 GridBagConstraints.HORIZONTAL);
-
-        JLabel currentCellLabel = new JLabel("Current High Cell:");
-        addComponent(panel, currentCellLabel, 0, gridy, 1, 1,
-                regularInsets, GridBagConstraints.LINE_START,
-                GridBagConstraints.HORIZONTAL);
-
-        currentCellField = new JTextField(6);
-        currentCellField.setEditable(false);
-        currentCellField.setHorizontalAlignment(JTextField.RIGHT);
-        addComponent(panel, currentCellField, 1, gridy++, 1, 1,
-                regularInsets, GridBagConstraints.LINE_START,
-                GridBagConstraints.HORIZONTAL);
     }
 
     private void addComponent(Container container, Component component,
@@ -91,10 +79,9 @@ public class ScorePanel {
     }
 
     public void updatePartControl() {
-         highScoreField.setText(nf.format(model.getHighScore()));
+         highScoreField.setText(nf.format(model.getModelHighScore()));
          highCellField.setText(nf.format(model.getHighCell()));
          currentScoreField.setText(nf.format(model.getScore()));
-//         currentCellField.setText(nf.format(model.getCurrentCell()));
     }
 
     public JPanel getPanel() {
