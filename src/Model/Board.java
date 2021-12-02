@@ -13,7 +13,6 @@ public class Board{
     public Board() {
 		gameScore = new Score();
 		gameWon = false;
-		highCell = 0;
 		totalTiles = 0;
     }
     
@@ -40,6 +39,10 @@ public class Board{
     }
     public void setHighCell(int hc) {
     	highCell = hc;
+    }
+    
+    public int getTotalTiles() {
+    	return totalTiles;
     }
     
     public boolean isBoardFull()
