@@ -19,7 +19,6 @@ public class ScorePanel {
     private JTextField highScoreField;
     private JTextField highCellField;
     private JTextField currentScoreField;
-    private JTextField currentCellField;
 
     public ScorePanel(Model model) {
         this.model = model;

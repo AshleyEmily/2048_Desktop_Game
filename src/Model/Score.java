@@ -24,13 +24,13 @@ public class Score {
         if (score > highScore) highScore = score;
     }
 
-    public void updateHighScore()
-    {
-        if(score > highScore)
-        {
-            highScore = score;
-        }
-    }
+//    public void updateHighScore()
+//    {
+//        if(score > highScore)
+//        {
+//            highScore = score;
+//        }
+//    }
 
     public int getScore()
     {

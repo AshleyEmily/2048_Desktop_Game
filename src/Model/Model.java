@@ -7,6 +7,10 @@ import Controller.Cell;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -21,6 +25,7 @@ public class Model {
 	private Cell[][] grid;
 	public Settings themes;
 	private int highScore;
+	private int highCell;
 
 	 /**Add*/
 	 private boolean arrowActive;
@@ -31,7 +36,7 @@ public class Model {
 		this.random = new Random();
 		initializeGrid();
 		themes = new Settings();
-		highScore = 0;
+		retrieveScores();
 
 		/**Add*/
 		this.arrowActive = false;
@@ -43,7 +48,6 @@ public class Model {
 		this.random = new Random();
 		initializeGrid();
 		themes = new Settings();
-
 		/**Add*/
 		this.arrowActive = false;
 	}
@@ -67,28 +71,34 @@ public class Model {
 	public void modelMoveUp(){
 		game.moveUp();
 		updateCellGrid();
-		highScore = game.getGameScore().getHighScore();
+		updateScores();
 	}
 	
 	public void modelMoveDown(){
 		game.moveDown();
 		updateCellGrid();
-		highScore = game.getGameScore().getHighScore();
+		updateScores();
+
 	}
 	
 	public void modelMoveLeft(){
 		game.moveLeft();
 		updateCellGrid();
-		highScore = game.getGameScore().getHighScore();
+		updateScores();
 	}
 	
 	public void modelMoveRight(){
 		game.moveRight();
 		updateCellGrid();
-		highScore = game.getGameScore().getHighScore();
+		updateScores();
 	}
 	
-	
+	public void updateScores() {
+		if (game.getGameScore().getHighScore() > highScore) 
+			highScore = game.getGameScore().getHighScore();
+		if (game.getHighCell() > highCell) 
+			highCell = game.getHighCell();
+	}
 	
  //INITIALIZES VIEW COMPONENT OF BOARD
    	public void initializeGrid() {
@@ -109,6 +119,7 @@ public class Model {
 	 public void addNewCell(){
 	    	int x_rand;
 	    	int y_rand;
+	    	if (game.getTotalTiles() == 16) return;
 	    	do {
 	    	x_rand = random.nextInt(4);
 	    	y_rand = random.nextInt(4);
@@ -141,7 +152,7 @@ public class Model {
 	/**------------------------------------------------------**/
 
    	public boolean isGameOver() {
-		if (getBoard().isBoardFull() == true){
+		if (getBoard().isBoardFull() && !isMovePossible()){
 			return true;
 		}else {
 			return false;
@@ -176,7 +187,7 @@ public class Model {
 	
 
 	public int getHighCell() {
-		return game.getHighCell();
+		return highCell;
 	}
 	
 	
@@ -230,72 +241,6 @@ public class Model {
 		this.arrowActive = arrowActive;
 	}
 
-	public boolean moveCellsDown() {
-		boolean dirty = false;
-
-		if (moveCellsDownLoop())    dirty = true;
-
-		for (int x = 0; x < GRID_WIDTH; x++) {
-			for (int y = GRID_WIDTH - 1; y > 0; y--) {
-				int yy = y - 1;
-				dirty = combineCells(x, yy, x, y, dirty);
-			}
-		}
-
-		if (moveCellsDownLoop())    dirty = true;
-
-		return dirty;
-	}
-
-	private boolean moveCellsDownLoop() {
-		boolean dirty = false;
-
-		for (int x = 0; x < GRID_WIDTH; x++) {
-			boolean columnDirty = false;
-			do {
-				columnDirty = false;
-				for (int y = GRID_WIDTH - 1; y > 0; y--) {
-					int yy = y - 1;
-					boolean cellDirty = moveCell(x, yy, x, y);
-					if (cellDirty) {
-						columnDirty = true;
-						dirty = true;
-					}
-				}
-			} while (columnDirty);
-		}
-
-		return dirty;
-	}
-
-	private boolean combineCells(int x1, int y1, int x2, int y2,
-								 boolean dirty) {
-		if (!grid[x1][y1].isZeroValue()) {
-			int value = grid[x1][y1].getValue();
-			if (grid[x2][y2].getValue() == value) {
-				int newValue = value + value;
-				grid[x2][y2].setValue(newValue);
-				grid[x1][y1].setValue(0);
-//				updateScore(newValue, newValue);
-				dirty = true;
-			}
-		}
-		return dirty;
-	}
-	private boolean moveCell(int x1, int y1, int x2, int y2) {
-		boolean dirty = false;
-		if (!grid[x1][y1].isZeroValue()
-				&& (grid[x2][y2].isZeroValue())) {
-//			if (DEBUG) {
-//				System.out.println(displayMoveCell(x1, y1, x2, y2));
-//			}
-			int value = grid[x1][y1].getValue();
-			grid[x2][y2].setValue(value);
-			grid[x1][y1].setValue(0);
-			dirty = true;
-		}
-		return dirty;
-	}
 	
 	private Color getTileColor(int value) {
       Color color = Color.WHITE;
@@ -331,6 +276,35 @@ public class Model {
 
       return color;
   }
+	
+	public void saveGame() {
+		try {
+		      FileWriter myWriter = new FileWriter("savedScores.txt");
+		      myWriter.write(String.valueOf(highScore) + "\n" + String.valueOf(highCell));
+		      myWriter.close();
+		      System.out.println("Saved");
+		    } 
+		catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
+	public void retrieveScores() {
+		 try {
+	            //Open the file using FileReader Object.
+	            FileReader file = new FileReader("savedScores.txt");
+	            BufferedReader buff = new BufferedReader(file);
+	            String line = buff.readLine();
+	            highScore = Integer.parseInt(line);
+	            line = buff.readLine();
+	            highCell = Integer.parseInt(line);
+	            buff.close();
+	        }
+	        catch (IOException e) {
+	            System.out.println("Error -- " + e.toString());
+	        }
+	}
 
 }
 

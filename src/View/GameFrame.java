@@ -6,7 +6,6 @@ import Controller.RightAction;
 import Controller.UpAction;
 import Model.Board;
 import Model.Model;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -102,6 +101,7 @@ public class GameFrame extends JPanel {
     public void exitProcedure() {
 //        model.setHighScores();
 //        highScoreProperties.saveProperties();
+    	model.saveGame();
         frame.dispose();
         System.exit(0);
     }
