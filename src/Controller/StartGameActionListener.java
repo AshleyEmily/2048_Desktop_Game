@@ -26,13 +26,12 @@ public class StartGameActionListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-//        model.getHighScore();
-        model.initializeGrid();
+    	model.resetModel();
         model.setArrowActive(true);
-        board.getGameScore();
-        board.getGameStatus();
-        board.isBoardFull();
-        board.getHighCell();
+       // board.getGameScore();
+       // board.getGameStatus();
+      //  board.isBoardFull();
+      //  board.getHighCell();
         
         model.addNewCell();
         model.addNewCell();

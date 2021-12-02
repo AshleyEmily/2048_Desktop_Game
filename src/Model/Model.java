@@ -20,11 +20,24 @@ public class Model {
  	private static final int GRID_WIDTH = 4;
 	private Cell[][] grid;
 	public Settings themes;
+	private int highScore;
 
 	 /**Add*/
 	 private boolean arrowActive;
 
 	public Model(){
+		game = new Board();
+		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
+		this.random = new Random();
+		initializeGrid();
+		themes = new Settings();
+		highScore = 0;
+
+		/**Add*/
+		this.arrowActive = false;
+	}
+	
+	public void resetModel() {
 		game = new Board();
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
 		this.random = new Random();
@@ -47,24 +60,32 @@ public class Model {
 		return grid;
 	}
 	
+	public int getModelHighScore() {
+		return highScore;
+	}
+	
 	public void modelMoveUp(){
 		game.moveUp();
 		updateCellGrid();
+		highScore = game.getGameScore().getHighScore();
 	}
 	
 	public void modelMoveDown(){
 		game.moveDown();
 		updateCellGrid();
+		highScore = game.getGameScore().getHighScore();
 	}
 	
 	public void modelMoveLeft(){
 		game.moveLeft();
 		updateCellGrid();
+		highScore = game.getGameScore().getHighScore();
 	}
 	
 	public void modelMoveRight(){
 		game.moveRight();
 		updateCellGrid();
+		highScore = game.getGameScore().getHighScore();
 	}
 	
 	
@@ -148,9 +169,7 @@ public class Model {
 		return game.getGameScore().getScore();
 	}
 
-	public int getHighScore() {
-		return game.getGameScore().getHighScore();
-	}
+	
 
 	public int getHighCell() {
 		return game.getHighCell();
