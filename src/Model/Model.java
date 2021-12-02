@@ -120,7 +120,11 @@ public class Model {
 	/**------------------------------------------------------**/
 
    	public boolean isGameOver() {
-		return game.isBoardFull() && !isMovePossible();
+		if (getBoard().isBoardFull() == true){
+			return true;
+		}else {
+			return false;
+		}
 	}
    	
  	private boolean isMovePossible() {
