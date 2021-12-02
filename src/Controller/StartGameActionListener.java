@@ -11,27 +11,16 @@ public class StartGameActionListener implements ActionListener {
 	
     private GameFrame frame;
     private Model model;
-    private Board board;
 
-    public StartGameActionListener(GameFrame frame, Model model, Board board) {
+    public StartGameActionListener(GameFrame frame, Model model) {
         this.frame = frame;
         this.model = model;
-        this.board = board;
-//        board.getGameScore();
-//        board.getGameStatus();
-//        board.isBoardFull();
-//        board.getHighCell();
-
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
     	model.resetModel();
         model.setArrowActive(true);
-       // board.getGameScore();
-       // board.getGameStatus();
-      //  board.isBoardFull();
-      //  board.getHighCell();
         
         model.addNewCell();
         model.addNewCell();

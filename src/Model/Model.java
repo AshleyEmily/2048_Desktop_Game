@@ -1,4 +1,3 @@
-
 package Model;
 import Controller.Settings;
 
@@ -24,6 +23,8 @@ public class Model {
  	private static final int GRID_WIDTH = 4;
 	private Cell[][] grid;
 	public Settings themes;
+	
+	//SCORES
 	private int highScore;
 	private int highCell;
 
@@ -52,53 +53,52 @@ public class Model {
 		this.arrowActive = false;
 	}
 	
+	//SETTER
 	public void setTheme(int choice) {
 		themes.setTheme(choice);
 	}
 	
+	//GETTERS
 	public Board getBoard() {
 		return game;
 	}
-	
 	public Cell[][] getGrid(){
 		return grid;
 	}
-	
 	public int getModelHighScore() {
 		return highScore;
 	}
+	public int getScore() {
+		return game.getGameScore().getScore();
+	}
+	public int getHighCell() {
+		return highCell;
+	}
 	
+	
+	//MOVE METHODS
 	public void modelMoveUp(){
 		game.moveUp();
 		updateCellGrid();
 		updateScores();
 	}
-	
 	public void modelMoveDown(){
 		game.moveDown();
 		updateCellGrid();
 		updateScores();
-
 	}
-	
 	public void modelMoveLeft(){
 		game.moveLeft();
 		updateCellGrid();
 		updateScores();
 	}
-	
 	public void modelMoveRight(){
 		game.moveRight();
 		updateCellGrid();
 		updateScores();
 	}
 	
-	public void updateScores() {
-		if (game.getGameScore().getHighScore() > highScore) 
-			highScore = game.getGameScore().getHighScore();
-		if (game.getHighCell() > highCell) 
-			highCell = game.getHighCell();
-	}
+
 	
  //INITIALIZES VIEW COMPONENT OF BOARD
    	public void initializeGrid() {
@@ -130,8 +130,7 @@ public class Model {
 	 }
 	 
 	 
-/**---------------------------------------------------------------**/
-	 /** NEED TO REMOVE DRAW AND GETPREFERREDSIZE FROM MODEL**/
+
   	public void draw(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
 		Dimension d = getPreferredSize();
@@ -149,8 +148,9 @@ public class Model {
 				FRAME_THICKNESS * 5;
 		return new Dimension(width, width);
 	}
-	/**------------------------------------------------------**/
 
+
+   //CHECKS IF CONDITIONS ARE TRUE FOR GAME TO END
    	public boolean isGameOver() {
 		if (getBoard().isBoardFull() && !isMovePossible()){
 			return true;
@@ -159,6 +159,7 @@ public class Model {
 		}
 	}
    	
+   	//CHECKS IF THERE ARE ANY POSSIBLE MOVES TO BE MADE IN TH BOARD
  	private boolean isMovePossible() {
 		for (int x = 0; x < GRID_WIDTH; x++) {
 			for (int y = 0; y < (GRID_WIDTH - 1); y++) {
@@ -175,20 +176,6 @@ public class Model {
 		return false;
 	}
  	
- 	public void gameOver() {
- 	}
-
-	public void setVisible(boolean b) { }
-
-	public int getScore() {
-		return game.getGameScore().getScore();
-	}
-
-	
-
-	public int getHighCell() {
-		return highCell;
-	}
 	
 	
 	//UPDATES THE VIEW COMPONENT OF THE BOARD
@@ -244,10 +231,7 @@ public class Model {
 	
 	private Color getTileColor(int value) {
       Color color = Color.WHITE;
-
       switch (value) {
-//          case 2:     color = new Color(238, 228, 218);
-//              break;
           case 2:     color = Color.decode(themes.getTheme()[0]);
               break;
           case 4:     color = Color.decode(themes.getTheme()[1]);
@@ -276,6 +260,15 @@ public class Model {
 
       return color;
   }
+	
+
+	//SCORE METHOODS
+	public void updateScores() {
+		if (game.getGameScore().getHighScore() > highScore) 
+			highScore = game.getGameScore().getHighScore();
+		if (game.getHighCell() > highCell) 
+			highCell = game.getHighCell();
+	}
 	
 	public void saveGame() {
 		try {

@@ -5,33 +5,29 @@ public class Board{
 
     private Number [][]boardData = new Number[4][4];
     private Score gameScore;
-    private boolean gameWon;
     private int totalTiles;
     private int highCell;
     
 
     public Board() {
 		gameScore = new Score();
-		gameWon = false;
 		totalTiles = 0;
     }
     
-
-    public void populateTiles(int x_rand, int y_rand) {
-    	boardData[x_rand][y_rand] = new Number(x_rand, y_rand);
+    //INSERT NUMBER TILE INTO BOARD AT (x, y) COORDINATE
+    public void populateTiles(int x, int y) {
+    	boardData[x][y] = new Number();
     	totalTiles++;
     }
     
+    
+    //GETTERS AND SETTERS
     public Number getTile(int x, int y) {
     	return boardData[x][y];
     }
     
     public Score getGameScore() {
     	return gameScore;
-    }
-    
-    public boolean getGameStatus() {
-    	return gameWon;
     }
     
     public int getHighCell() {
@@ -45,25 +41,18 @@ public class Board{
     	return totalTiles;
     }
     
+    //CHECKS IF BOARD IS FULL 
     public boolean isBoardFull()
     {
     	return (totalTiles >= 16);
     }
     
+    //COMBINES NUMBER TILES
     public void combineMatch(Number tile) {
     	tile.updateNumber();
 		gameScore.updateScore(tile.getNumValue());
 		if (highCell < tile.getNumValue()) highCell = tile.getNumValue();
-    	if (highCell == 2048) gameWon = true;
     	totalTiles--;
-    }
-    
-    public void changeTheme(int choice) {
-    	for (int i = 0; i < 4; i++) {
-    		for (int j = 0; j < 4; j++) {
-    			if (boardData[i][j] != null) boardData[i][j].setTheme(choice);
-    		}
-    	}
     }
     
 
@@ -87,11 +76,9 @@ public class Board{
 				next = context.executeMethod(i, j, boardData);
 				if (j == next) continue; 					//does not move tile
 				else if (boardData[i][next] == null) {		//moves to empty cell
-					boardData[i][j].moveToNewPlace(i, next);
 					boardData[i][next] = boardData[i][j];
 				}
 				else{										//moves to matched tile
-					boardData[i][j].moveToNewPlace(i, next);
 					boardData[i][next] = boardData[i][j];
 					combineMatch(boardData[i][next]);
 				}
@@ -109,11 +96,9 @@ public class Board{
 				next = context.executeMethod(i, j, boardData);;
 				if (j == next) continue; 					//does not move tile
 				else if (boardData[i][next] == null) {		//move to empty cell
-					boardData[i][j].moveToNewPlace(i, next);
 					boardData[i][next] = boardData[i][j];
 				}
 				else{										//move to matched tile
-					boardData[i][j].moveToNewPlace(i, next);
 					boardData[i][next] = boardData[i][j];
 					combineMatch(boardData[i][next]);
 				}
@@ -133,11 +118,9 @@ public class Board{
 
 				if (i == next) continue; 					//does not move tile
 				else if (boardData[next][j] == null) {		//moves to empty cell
-					boardData[i][j].moveToNewPlace(next, j);
 					boardData[next][j] = boardData[i][j];
 				}
 				else{										//moves to matched tile
-					boardData[i][j].moveToNewPlace(next, j);
 					boardData[next][j] = boardData[i][j];
 					combineMatch(boardData[next][j]);
 				}
@@ -156,11 +139,9 @@ public class Board{
 
 				if (i == next) continue; 					//does not move tile
 				else if (boardData[next][j] == null) {		//moves to empty cell
-					boardData[i][j].moveToNewPlace(next, j);
 					boardData[next][j] = boardData[i][j];
 				}
 				else{										//moves to matched tile
-					boardData[i][j].moveToNewPlace(next, j);
 					boardData[next][j] = boardData[i][j];
 					combineMatch(boardData[next][j]);
 				}
