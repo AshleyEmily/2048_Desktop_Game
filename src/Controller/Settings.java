@@ -1,13 +1,5 @@
 package Controller;
 
-import Model.Model;
-import View.GameFrame;
-import Model.Board;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 /*
  * 
  * 
@@ -20,10 +12,7 @@ public class Settings{
 	private String[] theme2 = new String[] {"#eee4da", "#ede0c8", "#99FEFF", "#94DAFF", "#94B3FD", "#B983FF","#DADDFC","#BEAEE2","#CAB8FF","#39A2DB","#5C7AEA"};
 
 	private String[] theme3 =  new String[] {"#eee4da", "#ede0c8", "#9DD1AF", "#9BB494", "#68AB7A", "#628A6D", "#CCEFA5", "#ACCB8A", "#6BDB7D", "#ADF4B2", "#28D23F"};
-
-	public Settings() {
-
-	}
+	
 
 	/**
 	 * Method which sets theme based on an integer.
@@ -52,10 +41,5 @@ public class Settings{
 		return theme;
 	}
 
-//	@Override
-//	public void actionPerformed(ActionEvent e) {
-//		System.out.println("Theme changed");
-//
-//	}
 }
 

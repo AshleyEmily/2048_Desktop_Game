@@ -23,7 +23,6 @@ public class GridPanel extends JPanel{
 //         this.image = new GameOverImage(model);
 //         this.image.run();
         this.grid = model.getGrid();
-//        		new Cell[GRID_WIDTH][GRID_WIDTH];
     }
 
     public Dimension getPreferredSize() {

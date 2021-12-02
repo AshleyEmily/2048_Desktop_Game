@@ -12,12 +12,10 @@ public class UpAction extends AbstractAction {
 
     private GameFrame frame;
     private Model model;
-    private Board board;
 
-    public UpAction(GameFrame frame, Model model, Board board){
+    public UpAction(GameFrame frame, Model model){
         this.frame = frame;
         this.model = model;
-        this.board = board;
     }
 
     public void actionPerformed(ActionEvent event){

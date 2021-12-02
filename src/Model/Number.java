@@ -1,29 +1,12 @@
 package Model;
 
-import Controller.Settings;
-
-public class Number extends Settings {
+public class Number{
 	private int numValue;
-	private int xCoord;
-	private int yCoord;
 	private static final int CELL_WIDTH = 120;
 
 	
-	public Number(int x, int y){
+	public Number(){
 		numValue = 2;
-		xCoord = x;
-		yCoord = y; 
-	}
-	
-	public void moveToNewPlace(int x, int y) { //set new Coordinates
-		xCoord = x;
-		yCoord = y;
-	}
-	public int getXcoord() {
-		return xCoord;
-	}
-	public int getYcoord() {
-		return yCoord;
 	}
 	
 	public static int getCellWidth() {

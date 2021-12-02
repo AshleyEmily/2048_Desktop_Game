@@ -18,21 +18,16 @@ public class GameFrame extends JPanel {
     private GridPanel gridPanel;
     private JFrame frame;
     private ScorePanel scorePanel;
-    private Board board;
 
-    public GameFrame(Model model, Board board) {
+    public GameFrame(Model model) {
         this.model = model;
-        this.board = board;
-
-//        this.highScoreProperties = new HighScoreProperties(model);
-//        this.highScoreProperties.loadProperties();
         createPartControl();
     }
 
     private void createPartControl() {
         gridPanel = new GridPanel(model);
         scorePanel = new ScorePanel(model);
-        controlPanel = new ControlPanel(this, model, board);
+        controlPanel = new ControlPanel(this, model);
 
         frame = new JFrame();
         frame.setTitle("2048");
@@ -89,18 +84,16 @@ public class GameFrame extends JPanel {
 
 
         gridPanel.getActionMap().put("up arrow",
-                new UpAction(this, model, board));
+                new UpAction(this, model));
         gridPanel.getActionMap().put("down arrow",
-                new DownAction(this, model, board));
+                new DownAction(this, model));
         gridPanel.getActionMap().put("left arrow",
-                new LeftAction(this, model, board));
+                new LeftAction(this, model));
         gridPanel.getActionMap().put("right arrow",
-                new RightAction(this, model, board));
+                new RightAction(this, model));
     }
 
     public void exitProcedure() {
-//        model.setHighScores();
-//        highScoreProperties.saveProperties();
     	model.saveGame();
         frame.dispose();
         System.exit(0);

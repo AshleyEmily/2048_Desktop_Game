@@ -9,7 +9,7 @@ public class GameRunner implements Runnable {
     @Override
     public void run() {
     	Model game = new Model();
-        new GameFrame(game, game.getBoard());
+        new GameFrame(game);
     }
 
     public static void main(String[] args) {

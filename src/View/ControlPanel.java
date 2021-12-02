@@ -4,31 +4,28 @@ import Controller.*;
 import Controller.StartGameActionListener;
 import Controller.Theme1Listener;
 import Model.Model;
-import Model.Board;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+
+
 
 public class ControlPanel {
     private static final Insets regularInsets = new Insets(10, 10, 0, 10); //sets padding
     private GameFrame frame;
     private Model model;
     private JPanel panel;
-    private Board board;
 
-    public ControlPanel(GameFrame frame, Model model, Board board) {
+    public ControlPanel(GameFrame frame, Model model) {
         this.frame = frame;
         this.model = model;
-        this.board = board;
         createPartControl();
     }
 
     private void createPartControl() {
-        StartGameActionListener listener = new StartGameActionListener(frame, model, board);
-        Theme1Listener theme1Listener = new Theme1Listener(frame, model, board);
-        Theme2Listener theme2Listener = new Theme2Listener(frame, model, board);
-        Theme3Listener theme3Listener = new Theme3Listener(frame, model, board);
+        StartGameActionListener listener = new StartGameActionListener(frame, model);
+        Theme1Listener theme1Listener = new Theme1Listener(frame, model);
+        Theme2Listener theme2Listener = new Theme2Listener(frame, model);
+        Theme3Listener theme3Listener = new Theme3Listener(frame, model);
 
         panel = new JPanel();
         panel.setLayout(new GridBagLayout());
