@@ -25,6 +25,10 @@ public class Theme2Listener implements ActionListener{
         this.model = model;
     }
 
+    /**
+     * Method runs when user click "SKY THEME" button
+     * @param e is an instance of ActionEvent class
+     */
     @Override
     /**
      * Method which changes theme of the 2048 board.

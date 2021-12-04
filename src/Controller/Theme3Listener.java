@@ -25,6 +25,10 @@ public class Theme3Listener implements ActionListener{
         this.model = model;
     }
 
+    /**
+     * Method runs when user click "FOREST THEME" button
+     * @param e is an instance of ActionEvent class
+     */
     @Override
     /**
      * Method which changes theme of the 2048 board.

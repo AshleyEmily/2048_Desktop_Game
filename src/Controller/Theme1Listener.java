@@ -25,6 +25,10 @@ public class Theme1Listener implements ActionListener{
         this.model = model;
     }
 
+    /**
+     * Method runs when user click "CLASSIC THEME" button
+     * @param e is an instance of ActionEvent class
+     */
     @Override
     /**
      * Method which changes theme of the 2048 board.
