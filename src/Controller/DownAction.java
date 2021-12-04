@@ -6,6 +6,11 @@ import javax.swing.AbstractAction;
 import Model.Model;
 import View.GameFrame;
 
+/**
+ * 
+ * @author Atsuya Yano
+ *
+ */
 public class DownAction extends AbstractAction {
 
     private GameFrame frame;

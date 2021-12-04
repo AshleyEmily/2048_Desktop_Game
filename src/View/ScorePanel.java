@@ -5,6 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 
+/**
+ * 
+ * @author Samantha Guanzon
+ *
+ */
 public class ScorePanel {
     private static final Insets regularInsets   =
             new Insets(10, 10, 0, 10);

@@ -7,6 +7,7 @@ import Model.Model;
 import View.GameFrame;
 
 /**
+ * @author Ashley Irawan, Calvin Quach, Atsuya Yano, Samantha Guanzon
  * ActionListener Class which changes the theme of the game to theme 1 or "Classic Theme."
  * Communicates between the Model and the View.
  */

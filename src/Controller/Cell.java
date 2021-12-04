@@ -5,6 +5,11 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author Samantha Guanzon
+ *
+ */
 public class Cell{
     private static final int CELL_WIDTH = 120;
     private static final int FRAME_THICKNESS = 16;

@@ -1,20 +1,28 @@
 package Model;
 
+/**
+ * 
+ * @author Ashley
+ * Part of Strategy Pattern
+ *
+ */
 public class seekCellsUpCol implements seekCells{
 	
 	 /*
-     * Find next available cell in a column for the tiles to be moved upwards
-     * 
      * eg. [2][8][ ][4] 		[2][8][ ][4]			[2][8][2][4]
      * 	   		^			-->					-->		[4][4][ ][8]
      * 	   [2][ ][ ][ ]			[4][4][2][8]			[ ][ ][ ][ ]
      * 	   [2][4][2][8]			[ ][ ][ ][ ]			[ ][ ][ ][ ]
-     * 
-     * @param coordinates of the tile to-be-moved
-     * @return the next empty x-coordinate in that column or the x-coordinate of the closest tile that matches
-     * 
      */
 	
+	
+	/**
+	 * Finds the next coordinate that the tile in position (x, y) should go to when moved up
+	 * @param x An integer representing the x-coordinate on the board
+	 * @param y An integer representing the y-coordinate on the board
+	 * @param boardData A 2-dimensional array of Number objects representing the board
+	 * @return the next x-coordinate that the given tile should move to
+	 */
 	@Override
 	public int findNextAvailable(int x, int y, Number[][] boardData) {
 		if (x == 3) return x;
