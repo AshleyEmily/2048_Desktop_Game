@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Model;
 import View.GameFrame;
-import Model.Board;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

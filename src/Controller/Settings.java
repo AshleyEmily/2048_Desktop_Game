@@ -1,9 +1,8 @@
 package Controller;
 
 /*
- * 
- * 
- * 
+ * Class which holds the color data of each 2048 game theme.
+ * theme1 refers to the classic theme, theme2 to sky theme, theme3 to forest theme.
  */
 public class Settings{
 	private int theme = 1;
@@ -37,6 +36,10 @@ public class Settings{
 		return theme1;
 	}
 
+	/**
+     * Method to return the theme variable.
+     * @return the theme number as an integer.
+     */
 	public int getThemeNumber() {
 		return theme;
 	}
