@@ -16,8 +16,8 @@ public class LeftAction extends AbstractAction {
     private Model model;
 
     /**
-     * @param frame View
-     * @param model Model
+     * @param frame object of View
+     * @param model object of Model
      */
     public LeftAction(GameFrame frame, Model model){
         this.frame = frame;
