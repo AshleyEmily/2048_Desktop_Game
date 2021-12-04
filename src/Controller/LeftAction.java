@@ -5,7 +5,11 @@ import javax.swing.AbstractAction;
 
 import Model.Model;
 import View.GameFrame;
-
+/**
+ * 
+ * @author Atsuya Yano
+ *
+ */
 public class LeftAction extends AbstractAction {
 
     private GameFrame frame;

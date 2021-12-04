@@ -1,53 +1,107 @@
 package Model;
 
-
+/**
+ * 
+ * @author Ashley Irawan
+ * 
+ *
+ */
 public class Board{
-
+	/**
+	 * 2Dimensional array of Number tiles representing the board grid
+	 */
     private Number [][]boardData = new Number[4][4];
+    
+    
+    /**
+     * Represents all the scores relating to the game
+     */
     private Score gameScore;
+    
     private int totalTiles;
     private int highCell;
     
 
+    /**
+     * Creates a Board with score and total tiles on the board initialized to 0
+     */
     public Board() {
 		gameScore = new Score();
 		totalTiles = 0;
     }
     
-    //INSERT NUMBER TILE INTO BOARD AT (x, y) COORDINATE
+    /**
+     * Inserts Number object into the board at (x, y) coordinate
+     * @param x The x-coordinate on the board
+     * @param y The y-coordinate on the board
+     */
     public void populateTiles(int x, int y) {
     	boardData[x][y] = new Number();
     	totalTiles++;
     }
     
     
-    //GETTERS AND SETTERS
+    /**
+     * Gets the Number object stored in (x, y) coordinate on the board
+     * @param x The x-coordinate on the board
+     * @param y The y-coordinate on the board
+     * @return A Number object
+     */
     public Number getTile(int x, int y) {
     	return boardData[x][y];
     }
     
+    /**
+     * Gets the Score object of the class
+     * @return A Score object
+     */
     public Score getGameScore() {
     	return gameScore;
     }
     
+    
+    /**
+     * Gets the highest value among all the Number tiles on the board
+     * @return An integer representing the highest value on the board
+     */
     public int getHighCell() {
     	return highCell;
     }
+    
+    /**
+     * Sets the highest value on the board
+     * @param hc An integer representing the highest value on the board
+     */
     public void setHighCell(int hc) {
     	highCell = hc;
     }
     
+    
+    /**
+     * Gets the number of tiles currently on the board
+     * @return An integer representing the number of tiles on the board
+     */
     public int getTotalTiles() {
     	return totalTiles;
     }
     
-    //CHECKS IF BOARD IS FULL 
+    /**
+     * Checks the number of tiles on the board 
+     * @return true if board is full and false if board is not
+     */
     public boolean isBoardFull()
     {
     	return (totalTiles >= 16);
     }
     
-    //COMBINES NUMBER TILES
+    /**
+     * Add two tiles together and makes updates using the Integer value from {@link Number#getNumValue() Number.getNumValue()}:
+     * Makes call to {@link Number#updateNumber() updateNumber()} to update the value of the tile, 
+     * Makes call to {@link Score#updateScore(int) updateScore(int)} to update score of the game, 
+     * updates the highest value on the board (if applicable),
+     * and updates the total tile count.
+     * @param tile The Number object where the value will be used to do the calculation
+     */
     public void combineMatch(Number tile) {
     	tile.updateNumber();
 		gameScore.updateScore(tile.getNumValue());
@@ -56,17 +110,17 @@ public class Board{
     }
     
 
-/*
- * MOVE METHODS: Makes calls to NEXT AVAILABLE METHODS and updates the Number Tiles of the Board(numValue and Coordinates)
- * checks if the next coordinate passed back by NEXT AVAILABLE METHODS is:
- * an empty tile (moves number tile to new coordinate), 
- * a matched tile (moves number tile to new coordinate and updates number), 
- * or the same coordinate (does nothing)
- * Changes previously occupied cell to null
- * @return nothing
- * @param nothing
- */
-   
+   /**
+    * Move Method: Down
+    * Moves any applicable tiles on the board down
+    * Uses Strategy Pattern: seekCells interface is implemented by seekCellsDownCol class using SeekCellsContext class
+    * Makes calls to respective {@link seekCellsDownCol#findNextAvailable(int, int, Number[][]) findNextAvailable} methods to find the next available coordinate
+    * Checks if the next coordinate passed back by findNextAvailable is:
+    * an empty tile (moves number tile to new coordinate), 
+    * a matched tile (moves number tile to new coordinate and calls combineMatch(Number) to update value), 
+    * or the same coordinate (does nothing)
+    * if moved, changes previously occupied cell to null
+    */
     public void moveDown() {
 		SeekCellsContext context = new SeekCellsContext(new seekCellsRightRow());
 		for (int j = 3; j >= 0; j--) {						//from left to right
@@ -87,6 +141,17 @@ public class Board{
 		}
     }
     
+    /**
+     * Move Method: Up
+     * Moves any applicable tiles on the board up
+     * Uses Strategy Pattern: seekCells interface is implemented by seekCellsUpCol class using SeekCellsContext class
+     * Makes calls to respective {@link seekCellsUpCol#findNextAvailable(int, int, Number[][]) findNextAvailable} methods to find the next available coordinate
+     * Checks if the next coordinate passed back by findNextAvailable is:
+     * an empty tile (moves number tile to new coordinate), 
+     * a matched tile (moves number tile to new coordinate and calls combineMatch(Number) to update value), 
+     * or the same coordinate (does nothing)
+     * if moved, changes previously occupied cell to null     
+     */
     public void moveUp() {
 		SeekCellsContext context = new SeekCellsContext(new seekCellsLeftRow());
 		for (int j = 0; j < 4; j++) {						//from right to left
@@ -107,6 +172,17 @@ public class Board{
 		}
     }
     
+    /**
+     * Move Method: Right
+     * Moves any applicable tiles on the board right
+     * Uses Strategy Pattern: seekCells interface is implemented by seekCellsRightRow class using SeekCellsContext class
+     * Makes calls to respective {@link seekCellsRightRow#findNextAvailable(int, int, Number[][]) findNextAvailable} methods to find the next available coordinate
+     * Checks if the next coordinate passed back by findNextAvailable is:
+     * an empty tile (moves number tile to new coordinate), 
+     * a matched tile (moves number tile to new coordinate and calls combineMatch(Number) to update value), 
+     * or the same coordinate (does nothing)
+     * if moved, changes previously occupied cell to null          
+     */
     public void moveRight() {
 
 		SeekCellsContext context = new SeekCellsContext(new seekCellsUpCol());
@@ -129,6 +205,17 @@ public class Board{
 		}
     }
     
+    /**
+     * Move Method: Left
+     * Moves any applicable tiles on the board left
+     * Uses Strategy Pattern: seekCells interface is implemented by seekCellsLeftRow class using SeekCellsContext class
+     * Makes calls to respective {@link seekCellsLeftRow#findNextAvailable(int, int, Number[][]) findNextAvailable} methods to find the next available coordinate
+     * Checks if the next coordinate passed back by findNextAvailable is:
+     * an empty tile (moves number tile to new coordinate), 
+     * a matched tile (moves number tile to new coordinate and calls combineMatch(Number) to update value), 
+     * or the same coordinate (does nothing)
+     * if moved, changes previously occupied cell to null          
+     */
     public void moveLeft() {
     	SeekCellsContext context = new SeekCellsContext(new seekCellsDownCol());
 		for (int i = 0; i < 4; i++) {						//from up to down

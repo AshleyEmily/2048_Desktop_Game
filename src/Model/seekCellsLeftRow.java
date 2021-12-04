@@ -1,17 +1,26 @@
 package Model;
 
+/**
+ * 
+ * @author Ashley
+ * Part of Strategy Pattern
+ * 
+ */
 public class seekCellsLeftRow implements seekCells{
 	
 	
 	 /*
-     * Find next available cell in a row for the tiles to be moved to the left 
-     * 
      * eg. [2][4][ ][4] <-- [2][8][ ][ ]
-     * 
-     * @param coordinates of the tile to-be-moved
-     * @return the next empty y-coordinate in that row or the y-coordinate of the closest tile that matches
-     * 
      */
+	
+	
+	/**
+	 * Finds the next coordinate that the tile in position (x, y) should go to when moved left
+	 * @param x An integer representing the x-coordinate on the board
+	 * @param y An integer representing the y-coordinate on the board
+	 * @param boardData A 2-dimensional array of Number objects representing the board
+	 * @return the next y-coordinate that the given tile should move to
+	 */
 	public int findNextAvailable(int x, int y, Number[][] boardData) {
 		if (y == 0) return y;
 		if (boardData[x][y-1] != null && !boardData[x][y].equals(boardData[x][y-1])) return y;

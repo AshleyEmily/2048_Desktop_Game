@@ -6,6 +6,11 @@ import View.GameFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 
+ * @author Samantha Guanzon and Atsuya Yano
+ *
+ */
 public class StartGameActionListener implements ActionListener {
 	
     private GameFrame frame;

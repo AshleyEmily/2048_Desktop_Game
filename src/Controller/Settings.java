@@ -1,6 +1,7 @@
 package Controller;
 
-/*
+/**
+ * @author Calvin Quach
  * Class which holds the color data of each 2048 game theme.
  * theme1 refers to the classic theme, theme2 to sky theme, theme3 to forest theme.
  */
@@ -23,7 +24,7 @@ public class Settings{
 	
 	/**
 	 * Method that returns the theme based on the set integer theme.
-	 * @return one of themes 1 to 3
+	 * @return A String array of hex codes
 	 */
 	public String[] getTheme() {
 		switch(theme){

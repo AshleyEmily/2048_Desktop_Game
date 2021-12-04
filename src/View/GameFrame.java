@@ -10,6 +10,11 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * 
+ * @author Samantha Guanzon
+ *
+ */
 public class GameFrame extends JPanel {
 
     private ControlPanel controlPanel;

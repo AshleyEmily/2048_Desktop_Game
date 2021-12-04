@@ -7,7 +7,11 @@ import Model.Model;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * 
+ * @author Samantha Guanzon
+ *
+ */
 
 public class ControlPanel {
     private static final Insets regularInsets = new Insets(10, 10, 0, 10); //sets padding

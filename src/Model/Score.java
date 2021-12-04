@@ -1,6 +1,7 @@
 package Model;
 
 /**
+ * @author Ashley Irawan and Calvin Quach
  * Class which holds data of the score and high score of the 2048 game.
  * Handles various operations relating to both the score and high score.
  */
@@ -29,7 +30,7 @@ public class Score {
 
     /**
      * Method to increase score variable by specified amount and handle the high Score.
-     * If the score variabe is greater than the previous highScore, then update the high score 
+     * If the score variable is greater than the previous highScore, then update the high score 
      * @param scoreValue parameter to increase score variable by.
      */
     public void updateScore(int scoreValue)

@@ -12,9 +12,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * 
+ * @author Ashley Irawan and Samantha Guanzon
+ *
+ */
 
 public class Model {
-
+	
 	Board game;
 	private Random random;
 	
@@ -22,15 +27,22 @@ public class Model {
 	private static final int FRAME_THICKNESS = 16;
  	private static final int GRID_WIDTH = 4;
 	private Cell[][] grid;
+	
 	public Settings themes;
 	
 	//SCORES
 	private int highScore;
 	private int highCell;
 
-	 /**Add*/
-	 private boolean arrowActive;
+	private boolean arrowActive;
 
+	/**
+	 * Model Constructor: Creates the Board object, 
+	 * a Cell grid and initialize it by filling it with empty Cell objects, 
+	 * a Settings object with all the hex codes for themes, 
+	 * reads scores, like high score and high cell, saved in savedScores.txt,
+	 * and sets arrow active to false
+	 */
 	public Model(){
 		game = new Board();
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
@@ -38,60 +50,105 @@ public class Model {
 		initializeGrid();
 		themes = new Settings();
 		retrieveScores();
-
-		/**Add*/
 		this.arrowActive = false;
 	}
 	
+	/**
+	 * Resets everything similar to constructor except retrieving scores
+	 */
 	public void resetModel() {
 		game = new Board();
 		this.grid = new Cell[GRID_WIDTH][GRID_WIDTH];
 		this.random = new Random();
 		initializeGrid();
 		themes = new Settings();
-		/**Add*/
 		this.arrowActive = false;
 	}
 	
-	//SETTER
+	
+	/**
+	 * Sets the theme of the board
+	 * @param choice An integer representing which theme in Settings class
+	 */
 	public void setTheme(int choice) {
 		themes.setTheme(choice);
 	}
 	
-	//GETTERS
-	public Board getBoard() {
-		return game;
-	}
+	/**
+	 * Gets the 2-Dimensional Cell array
+	 * @return a 2-Dimensional array of Cell objects
+	 */
 	public Cell[][] getGrid(){
 		return grid;
 	}
+	
+	/**
+	 * Gets the high score recorded by Model class
+	 * @return An Integer representing the high score recorded by Model class
+	 */
 	public int getModelHighScore() {
 		return highScore;
 	}
+	
+	/**
+	 * Gets the Score object from Board class
+	 * @return a Score object representing all the scores recorded by Board class
+	 */
 	public int getScore() {
 		return game.getGameScore().getScore();
 	}
+	
+	/**
+	 * Gets the highest value on the Board recorded by Model class
+	 * @return An integer representing the highest value on the Board recorded by Model Class
+	 */
 	public int getHighCell() {
 		return highCell;
 	}
 	
 	
-	//MOVE METHODS
+	/**
+	 * Model Move methods: Up
+	 * makes call to {@link Board#moveUp() Board.moveUp()} method
+	 * makes call to {@link #updateCellGrid() updateCellGrid()} method to update Cell grid with the changes
+	 * makes call to {@link #updateScores() updateScores()} method to record the new scores in Model 
+	 */
 	public void modelMoveUp(){
 		game.moveUp();
 		updateCellGrid();
 		updateScores();
 	}
+	
+	/**
+	 * Model Move methods: Down
+	 * makes call to {@link Board#moveDown() Board.moveDown()} method
+	 * makes call to {@link #updateCellGrid() updateCellGrid()} method to update Cell grid with the changes
+	 * makes call to {@link #updateScores() updateScores()} method to record the new scores in Model 
+	 */
 	public void modelMoveDown(){
 		game.moveDown();
 		updateCellGrid();
 		updateScores();
 	}
+	
+	/**
+	 * Model Move methods: Left
+	 * makes call to {@link Board#moveLeft() Board.moveLeft()} method
+	 * makes call to {@link #updateCellGrid() updateCellGrid()} method to update Cell grid with the changes
+	 * makes call to {@link #updateScores() updateScores()} method to record the new scores in Model 
+	 */
 	public void modelMoveLeft(){
 		game.moveLeft();
 		updateCellGrid();
 		updateScores();
 	}
+	
+	/**
+	 * Model Move methods: Right
+	 * makes call to {@link Board#moveRight() Board.moveRight()} method
+	 * makes call to {@link #updateCellGrid() updateCellGrid()} method to update Cell grid with the changes
+	 * makes call to {@link #updateScores() updateScores()} method to record the new scores in Model 
+	 */
 	public void modelMoveRight(){
 		game.moveRight();
 		updateCellGrid();
@@ -100,7 +157,11 @@ public class Model {
 	
 
 	
- //INITIALIZES VIEW COMPONENT OF BOARD
+	/**
+	 * Fills 2-Dimensional array of Cell objects with Cell objects of value 1
+	 * sets each cell location by making calls to {@link Cell#setCellLocation(java.awt.Point) Cell.setCellLocation(int, int)} method
+	 * making calls to {@link Cell#getCellWidth() Cell.getCellWidth()} to set cell location 
+	 */
    	public void initializeGrid() {
  		int xx = FRAME_THICKNESS;
  		for (int x = 0; x < GRID_WIDTH; x++) {
@@ -116,6 +177,12 @@ public class Model {
  	}
 
  // ADDS CELL AND NUMBER TILES BY RANDOM 	
+   	/**
+   	 * Uses Random class to find empty spaces on the board and picks a random space to put a new tile
+   	 * calls {@link Cell#setValue(int) Cell.setValue(int)} to set the value of the new tile to 2,
+   	 * and {@link Cell#setCellColor(Color) Cell.setCellColor(Color)} method and {@link Settings#getTheme() Settings.getTheme()} to get the current theme and color of the tile
+   	 * calls {@link Board#populateTiles(int, int) Board.populateTiles(int, int)} method to insert Number object into target coordinates in Board object
+   	 */
 	 public void addNewCell(){
 	    	int x_rand;
 	    	int y_rand;
@@ -130,7 +197,12 @@ public class Model {
 	 }
 	 
 	 
-
+	 /**
+	  * Draws the Cell objects according to the Cell grid object
+	  * makes calls to {@link #getPreferredSize() getPreferredSize()} method for Dimension object
+	  * makes calls to {@link Cell#drawCell(Graphics) Cell.drawCell(Graphics)} method to draw cell
+	  * @param g A Graphics object
+	  */
   	public void draw(Graphics g) {
 		g.setColor(Color.DARK_GRAY);
 		Dimension d = getPreferredSize();
@@ -143,6 +215,10 @@ public class Model {
 		}
   	}
 
+  	/**
+  	 * Calculates the view size of the Cell 
+  	 * @return A Dimension object with the width and height of the Cell
+  	 */
    public Dimension getPreferredSize() {
 	   int width = GRID_WIDTH * Number.getCellWidth() +
 				FRAME_THICKNESS * 5;
@@ -150,16 +226,23 @@ public class Model {
 	}
 
 
-   //CHECKS IF CONDITIONS ARE TRUE FOR GAME TO END
+   /**
+    * Checks if the board is full and if there are no more possible moves to be made
+    * makes call to {@link Board#isBoardFull() Board.isBoardFull()} and {@link #isMovePossible() isMovePossible()} methods
+    * @return True if game is over, False if can keep going
+    */
    	public boolean isGameOver() {
-		if (getBoard().isBoardFull() && !isMovePossible()){
+		if (game.isBoardFull() && !isMovePossible()){
 			return true;
 		}else {
 			return false;
 		}
 	}
    	
-   	//CHECKS IF THERE ARE ANY POSSIBLE MOVES TO BE MADE IN TH BOARD
+   	/**
+   	 * Checks Number objects in the Board if there are any duplicate values next to each other that could result in a move
+   	 * @return True if there is a move to be made, False if no moves are possible
+   	 */
  	private boolean isMovePossible() {
 		for (int x = 0; x < GRID_WIDTH; x++) {
 			for (int y = 0; y < (GRID_WIDTH - 1); y++) {
@@ -178,7 +261,11 @@ public class Model {
  	
 	
 	
-	//UPDATES THE VIEW COMPONENT OF THE BOARD
+ 	/** 
+ 	 * Updates the Cell grid according to the Board object
+ 	 * Uses {@link #getTileColor(int) getTileColor(int)} method to decode the color from Settings object according to current theme and value of tile
+ 	 * Uses {@link Cell#setValue(int) Cell.setValue(int)} and {@link Cell#setCellColor(Color) Cell.setCellColor(Color)} to update every Cell object's value and color
+ 	 */
 	public void updateCellGrid() {
 		for (int x = 0; x < 4; x++) {
 			for (int y = 0; y < 4; y++) {
@@ -194,7 +281,11 @@ public class Model {
 		}
 	}
 	
+	
 	//FOR DEBUGGING PURPOSES
+	/**
+	 * Prints the Cell and Board into the console for debugging
+	 */
 	public void printCellGridandBoard() {
 		System.out.println("CELL GRID");
 		for (int x = 0; x < 4; x++) {
@@ -218,17 +309,28 @@ public class Model {
 	}
 	
 
-
-	/**Add*/
+	/**
+	 * Gets the status of arrow
+	 * @return True if Active, False if Not Active
+	 */
 	public boolean ArrowActive(){
 		return arrowActive;
 	}
 
+	/**
+	 * Sets the status of arrow
+	 * @param arrowActive A boolean value, true is Active, false is Inactive
+	 */
 	public void setArrowActive(boolean arrowActive){
 		this.arrowActive = arrowActive;
 	}
 
-	
+	/**
+	 * Uses the value of the tile to get the color of the tile according to the current theme 
+	 * makes calls to {@link Settings#getTheme() Settings.getTheme()} for the colors of the current theme
+	 * @param value An integer value represeting the number value of the tile
+	 * @return The Color object decoded from the color hex values retrieved from Settings object
+	 */
 	private Color getTileColor(int value) {
       Color color = Color.WHITE;
       switch (value) {
@@ -263,6 +365,12 @@ public class Model {
 	
 
 	//SCORE METHOODS
+	/**
+	 * Records the high score and highest value of cell from Board class in Model class
+	 * Uses {@link Board#getGameScore() Board.getGameScore()} to retrieve Score object from Board class
+	 * Uses {@link Score#getHighScore() Score.getHighScore()} for high score
+	 * Uses {@link Board#getHighCell() Board.getHighCell()} for highest value of cell from Board 
+	 */
 	public void updateScores() {
 		if (game.getGameScore().getHighScore() > highScore) 
 			highScore = game.getGameScore().getHighScore();
@@ -270,6 +378,9 @@ public class Model {
 			highCell = game.getHighCell();
 	}
 	
+	/**
+	 * Saves high score and highest value of cell of the Board in savedScores.txt
+	 */
 	public void saveGame() {
 		try {
 		      FileWriter myWriter = new FileWriter("savedScores.txt");
@@ -283,6 +394,9 @@ public class Model {
 		    }
 	}
 	
+	/**
+	 * Reads savedScores.txt for high score and highest value of cell from previous games
+	 */
 	public void retrieveScores() {
 		 try {
 	            //Open the file using FileReader Object.
