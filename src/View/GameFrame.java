@@ -4,7 +4,6 @@ import Controller.DownAction;
 import Controller.LeftAction;
 import Controller.RightAction;
 import Controller.UpAction;
-import Model.Board;
 import Model.Model;
 import javax.swing.*;
 import java.awt.*;

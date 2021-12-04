@@ -1,11 +1,10 @@
 package Controller;
 
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+
 import Model.Model;
 import View.GameFrame;
-
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
 
 public class DownAction extends AbstractAction {
 

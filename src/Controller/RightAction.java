@@ -1,10 +1,8 @@
 package Controller;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 
-import Model.Board;
 import Model.Model;
 import View.GameFrame;
 
